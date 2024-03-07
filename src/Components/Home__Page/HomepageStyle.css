@@ -1,0 +1,361 @@
+.top-header{
+    padding: .5em;
+    display: flex;
+    flex-direction: row;
+    background: #0a193a;
+    position: fixed;
+    height: 3em;
+    width: 100%;
+    justify-content: center;
+    border-bottom: rgb(209, 173, 13) solid .2em;
+}
+.newlogo{
+    position: absolute;
+    left: 1em;
+}
+.newlogo img{
+    object-fit: cover;
+    width: 2.9em;
+    height: 2.9em;
+}
+.dflt-prfl {
+    position: absolute;
+    right: 2em;
+}
+.dflt-prfl-img{
+    right: 0;
+    object-fit: cover;
+    height: 3em;
+    width: 3em;
+    border-radius: 2.5em;
+    
+}
+.dflt-prfl img:hover{
+    opacity: 80%;
+
+
+}
+.lg-out-mn {
+   position: absolute;
+   margin-top: -.5em;
+   padding: none;
+   right: 1em;
+   padding: 1em;
+    background: #0a193a;
+    border:rgb(209, 173, 13) solid 0.2em;
+    border-radius: 0.5em;
+    
+}
+.lg-out-mn ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    cursor: default;
+}
+.lg-out-mn li{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 0.2em;
+    font-weight: 500;
+}
+.lg-out-mn li:hover{
+    background: linear-gradient(#E8DBFC, #F8F9D2);
+    color: #2193b0;
+    border-radius: .5em;
+}
+.lg-out-mn.inactive{
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: var(--speed) ease;
+}
+.search{
+    padding-top: 0.5em;
+    position: absolute;
+    left: 7em;
+
+}
+.search input{
+    height: 1em;
+    width: 20em;
+    border-radius: 0.5em;
+    border: none;
+    outline: none;
+    padding: 0.4em;
+}
+.icon-menu{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 7em;
+    margin-left: 7em;
+    fill: rgb(164, 194, 241);
+
+}
+
+
+
+.admn-slctn.active{
+   
+    background: #92909093;
+
+    
+}
+.content{
+    position: fixed;
+    top: 4.3em;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+.left-grid{
+    height: 90.5%;
+    display: grid;
+    width: 25em;
+    grid-template-rows: auto;
+    border-right: grey solid .2em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    row-gap: 1em;
+    font-family: monospace;
+}
+.left-grid::-webkit-scrollbar {
+    width: 0; 
+}
+.left-grid:hover::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #929090; 
+    border-radius: 5px; 
+}
+
+::-webkit-scrollbar-track {
+    background: #d1cece5e; 
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+.left-grid:hover{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.mainview{
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    margin-left: 0.2em;
+    justify-content: center;
+    display: flex;
+}
+
+.ProfileContainer{
+    background: #0a193a;
+    width: 16em;
+    height: 3.7em;
+    color: rgb(255, 255, 255);
+    border-radius: 3.5em;
+    padding-top: 0.6em;
+    padding-left: 0.5em;
+    border: rgb(209, 173, 13) solid .2em;
+}
+
+.ProfileHeader{
+display: flex;
+}
+.ProfileHeader p{
+    margin-top: 0.1em;
+    margin-left: 0.5em;
+}
+.wrapper{
+    width: 100%;
+    display: flex;
+    height: 5.3em;
+    margin-top: 1em;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper:hover{
+    background: rgba(129, 128, 126, 0.281);
+    cursor: default;
+
+}
+.evltn-ctnr{
+    width: 96%;
+    padding: 1em;
+    height: 171em;
+    background: #0a193a;
+    margin-top: 1em;
+    border-radius: 1em;
+    border: rgb(209, 173, 13) solid 0.2em;
+    cursor: default;
+    font-family: serif;
+}
+.mainview::-webkit-scrollbar{
+    width: 8px;
+}
+.evltn-hdr{
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    display: flex;
+    padding: 1em;
+    border-bottom: grey solid 0.2em;
+}
+.evltn-p{
+    display: flex;
+    flex-direction: column;
+}
+.evltn-hdr p{
+    color:  rgb(255, 255, 255);
+    margin: 0;
+    margin-left: 1em;
+    font-size: 40px;
+    font-weight: 500;
+    display: table-caption;
+    letter-spacing: 6px;
+}
+.evltn-dp img{ 
+    width: 6em;
+    height: 6em;
+    border-radius: 4em;
+    object-fit: cover;
+
+}
+.evltn-Idnum{
+    margin-left: 2em !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+}
+.custom-table {
+    margin-top: 1em;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 5em ;
+    line-height: 2;
+    letter-spacing: 1.2px;
+  }
+  
+  .custom-table th, .custom-table td {
+    border: rgb(209 173 13 / 16%) solid .13em;
+    text-align: center;
+    padding: 8px;
+    
+  }
+  
+  .custom-table th {
+    background-color: #19c2e7e3;
+  }
+.dscrptv-p{
+    width: 76%;
+    text-align: left !important;
+    padding-left: 1.5em !important;
+}
+.scl-rt:hover{
+background-color: rgba(209, 173, 13, 0.753);
+color:black;
+border-radius: 5em;
+}
+.ttl-dscrptv-scr{
+    padding: 1em !important;
+    color: whitesmoke !important;
+}
+
+
+  .evltn-hdr.expanded {
+    height: 20em; 
+  }
+  .evltn-ctnr.expanded{
+    height: 185em; 
+  }
+  .nw-cntnr{
+    font-family: serif;
+    padding: .9em;
+    border-radius:10px ;
+    background: #0a193a;
+    width: 100%;
+    height: 90%;
+    margin: 1em;
+    overflow: scroll;
+
+  }
+.up-btn{
+
+    height: 2em;
+border: none;
+border-radius: 5px;
+    background: linear-gradient(#1a39c4, #6deded);
+    color: white;
+
+}
+.inf-frm{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.frm{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10em;
+}
+.fst-frm{
+    margin-left: 2em;
+    display: flex;
+    flex-direction: column;
+}
+.sc-frm{
+    margin-left: 6em;
+    display: flex;
+    flex-direction: column;
+}
+.frm input, .frm label, .frm textarea{
+    margin-bottom: .5em;
+    border-radius: 5px;
+    height: 2em;
+}
+.frm input{
+    width: 29em;
+}
+#info{
+    width: 40em;
+    letter-spacing: 2px;
+    font-family: serif;
+    height: 5em !important;
+    font-size: 18px;
+}
+.evltn-dp{
+    display: flex;
+    flex-direction: column;
+}
+.evltn-dp button{
+    margin-top: .5em;
+}
+.prflng-btn button{
+    margin-top: 1em;
+    height: 2em;
+    width: 10em;
+    border: none;
+    border-radius: 5px;
+        background: linear-gradient(#1a39c4, #6deded);
+        color: white;
+}
+
+.lft-slctn h3:hover{
+    background: #92909093;
+
+}
+
+.smll-cntnr{
+    display: block;
+    position: absolute;
+    height: auto;
+    width: auto;
+    background: white;
+    color: black;
+    padding: 1.5em;
+    box-shadow: rgb(0, 0, 0) 0px 0px 5px;
+}
