@@ -59,7 +59,7 @@ export const LogInForm = () => {
        if (!idNumber || !password) {
         alert('ID number and password cannot be empty');
         return;
-      }else if (idNumber == 'admin',password=='cd022826464'){
+      }else if (idNumber == 'admin'&& password=='cd022826464'){
         navigate('/Admin-DashBoard');
       }else{
         alert('invalid Credentials')
