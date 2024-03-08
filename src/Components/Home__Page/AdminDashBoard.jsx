@@ -238,7 +238,7 @@ const handleSubmit = async (e) => {
     try {
       const csrfToken = getCsrfToken();
       console.log('CSRF Token:', csrfToken);
-      const response = await fetch('http://127.0.0.1:8000/Departments/api/save_department/', {
+      const response = await fetch('http://52.195.228.101:8000/Departments/api/save_department/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -288,7 +288,7 @@ const [departments, setDepartments] = useState([]);
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/Departments/show_departments/?search=${searchQuery}`);
+      const response = await fetch(`http://52.195.228.101:8000/Departments/show_departments/?search=${searchQuery}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -331,7 +331,7 @@ const newhandleSubChange = (e) => {
 
 const handleAddSubject = async (departmentId) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/Departments/api/save_multiple_subjects/${departmentId}/`, {
+      const response = await fetch(`http://52.195.228.101:8000/Departments/api/save_multiple_subjects/${departmentId}/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -362,7 +362,7 @@ const [searchSubjQuery, setSearchSubjQuery] = useState('');
 
 const subFetchData = useCallback(async () => {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/Departments/show_subjects/?search=${searchSubjQuery}`);
+    const response = await fetch(`http://52.195.228.101:8000/Departments/show_subjects/?search=${searchSubjQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -396,7 +396,7 @@ useEffect(() => {
   // Function to fetch faculty data
   const fetchFacultyData = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/Add_faculty/show_all_faculty/');
+      const response = await fetch('http://52.195.228.101:8000/Add_faculty/show_all_faculty/');
       const data = await response.json();
       setFacultyList(data);
     } catch (error) {
@@ -425,7 +425,7 @@ useEffect(() => {
 
     const fetchSubjectsByDepartment = async (departmentId) => {
       try {
-          const response = await fetch(`http://127.0.0.1:8000/Departments/show_subjects_by_department/${departmentId}/`);
+          const response = await fetch(`http://52.195.228.101:8000/Departments/show_subjects_by_department/${departmentId}/`);
           if (!response.ok) {
               throw new Error('Failed to fetch subjects');
           }
@@ -566,7 +566,7 @@ const newhandleSubmit = async (e) => {
       formData.append('selected_subjects', subjectId); // Change to 'selected_subjects'
     });
 
-    const response = await fetch('http://127.0.0.1:8000/Add_faculty/save_faculty/', {
+    const response = await fetch('http://52.195.228.101:8000/Add_faculty/save_faculty/', {
       method: 'POST',
       headers: {
         'X-CSRFToken': getCsrfToken(),
@@ -633,7 +633,7 @@ const handleDelete = () => {
       // Get the CSRF token from the cookie
       const csrfToken = getCsrfToken();
 
-      fetch('http://127.0.0.1:8000/Add_faculty/delete_all_faculty_records/', {
+      fetch('http://52.195.228.101:8000/Add_faculty/delete_all_faculty_records/', {
           method: 'DELETE',
           headers: {
             'X-CSRFToken': csrfToken, // Include CSRF token in the request headers
@@ -685,7 +685,7 @@ const Course_Submit = async (e) => {
     try {
       const csrfToken = getCsrfToken();
       console.log('CSRF Token:', csrfToken);
-      const response = await fetch('http://127.0.0.1:8000/Courses/save_course/', {
+      const response = await fetch('http://52.195.228.101:8000/Courses/save_course/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -734,7 +734,7 @@ const [student_searchQuery, student_setSearchQuery] = useState('');
 
 const student_fetchData = useCallback(async () => {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/Courses/show_Students/?search=${student_searchQuery}`);
+    const response = await fetch(`http://52.195.228.101:8000/Courses/show_Students/?search=${student_searchQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -769,7 +769,7 @@ const [course_searchQuery, course_setSearchQuery] = useState('');
 
 const course_fetchData = useCallback(async () => {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/Courses/show_courses/?search=${course_searchQuery}`);
+    const response = await fetch(`http://52.195.228.101:8000/Courses/show_courses/?search=${course_searchQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -834,7 +834,7 @@ const handleSubmitStudent = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await fetch('http://127.0.0.1:8000/Courses/create_students/', {
+    const response = await fetch('http://52.195.228.101:8000/Courses/create_students/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -860,7 +860,7 @@ const [criteriaList, setCriteriaList] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/Criteria/show_criteria/');
+        const response = await fetch('http://52.195.228.101:8000/Criteria/show_criteria/');
         const data = await response.json();
         setCriteriaList(data);
       } catch (error) {
