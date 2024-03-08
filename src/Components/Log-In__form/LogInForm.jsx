@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import './LogInForm.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 import { useNavigate } from 'react-router-dom'
-import 'boxicons'
+
 import { useAuth } from '../AuthContext';
 
 
@@ -59,7 +59,7 @@ export const LogInForm = () => {
        if (!idNumber || !password) {
         alert('ID number and password cannot be empty');
         return;
-      }else if (idNumber == 'admin'&& password=='cd022826464'){
+      }else if (idNumber === 'admin'&& password==='cd022826464'){
         navigate('/Admin-DashBoard');
       }else{
         alert('invalid Credentials')
@@ -163,14 +163,12 @@ export const LogInForm = () => {
 
              <form className="login-form" onSubmit={handleLoginButtonClick}>
           <div className="input-box">
-                <box-icon type='solid' name='user' class="user-icon"></box-icon>
-                {/* Update the input value and add onChange handlers */}
+               
                 <input type="text" placeholder="ID Number" value={idNumber} onChange={handleIdNumberChange}/>
             </div>
 
             <div className="input-box">
-                <box-icon name='lock' type='solid' class="user-icon"></box-icon>
-                {/* Update the input value and add onChange handlers */}
+              
                 <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
             </div>
 

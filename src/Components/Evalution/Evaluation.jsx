@@ -4,7 +4,6 @@ import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
 import cjeck from "../Assets/cjeck.png"
 import {  useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import 'boxicons'
 
 
 export const Evaluation = () => {
@@ -255,13 +254,14 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
   
   <div className={`icons ${IconActive.home? 'active':''}`} onClick={()=>ToggleActive('home')}>
     <div className='home-icon'>
-      < box-icon name='home-circle' type='solid'  size = '2.5em'  ></box-icon>
+    <label name='home-circle' htmlFor="home">HOME</label>
     </div>
 </div>
 
 <div className={`icons ${IconActive.profile? 'active':'inactive'}`} onClick={()=>ToggleActive('profile')}>
   <div className='profile'></div>
- <box-icon name='user-circle' type='solid'  size = '2.5em' ></box-icon>
+ 
+ <label name='user-circle' htmlFor="user">USER</label>
  </div>
 
 

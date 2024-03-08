@@ -2,7 +2,7 @@ import React,{useState, } from 'react'
 import './HomepageStyle.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
-import 'boxicons'
+
 import { useNavigate } from 'react-router-dom';
 
 export const SupervisorHomepage = () => {
@@ -81,18 +81,19 @@ const [isExpanded, setIsExpanded] = useState(false);
   
   <div className={`icons ${IconActive.home? 'active':''}`} onClick={()=>ToggleActive('home')}>
     <div className='home-icon'>
-      < box-icon name='home-circle' type='solid'  size = '2.5em'  ></box-icon>
+      
+      <label name='home-circle' htmlFor="home">Home</label>
     </div>
 </div>
 
 <div className={`icons ${IconActive.profile? 'active':'inactive'}`} onClick={()=>ToggleActive('profile')}>
   <div className='profile'></div>
- <box-icon name='user-circle' type='solid'  size = '2.5em' ></box-icon>
+  <label name='user-circle' htmlFor="user">USER</label>
  </div>
 
  <div className={`icons ${IconActive.settings? 'active':'inactive'}`} onClick={()=>ToggleActive('settings')}>
   <div className='settings'></div>
- <box-icon type='solid' name='cog'  size = '2.5em' ></box-icon>
+  <label name='cog' htmlFor="cog">SETTINGS</label>
  </div>
 
 </div>

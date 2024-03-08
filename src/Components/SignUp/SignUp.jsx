@@ -3,7 +3,7 @@ import '../Log-In__form/LogInForm.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 
 import { useNavigate } from 'react-router-dom'
-import 'boxicons'
+
 import axios from 'axios';
 
 export const SignUp = () => {

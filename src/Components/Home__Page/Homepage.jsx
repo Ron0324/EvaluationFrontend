@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import './HomepageStyle.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
-import 'boxicons'
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -168,13 +168,15 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
   
   <div className={`icons ${IconActive.home? 'active':''}`}>
     <div className='home-icon'>
-      < box-icon name='home-circle' type='solid'  size = '2.5em'  ></box-icon>
+    
+      <label name='home-circle' htmlFor="home">HOME</label>
     </div>
 </div>
 
 <div className={`icons ${IconActive.evaluation? 'active':'inactive'}`} >
   <div className='evaluation'></div>
- <box-icon name='user-circle' type='solid'  size = '2.5em' ></box-icon>
+ 
+ <label name='user-circle' htmlFor="user">User</label>
  </div>
 
 

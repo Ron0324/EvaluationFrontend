@@ -2,7 +2,7 @@ import React,{useState, } from 'react'
 import './HomepageStyle.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
-import 'boxicons'
+
 import { useNavigate } from 'react-router-dom';
 export const StudentHomepage = () => {
 
