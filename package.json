@@ -27,12 +27,14 @@
       "react-app",
       "react-app/jest"
     ],
-    "env": {
-      "browser": true,
-      "node": true,
-      "jest/globals": true
-    }
-    
+    "overrides": [
+      {
+        "files": ["**/*.test.js", "**/*.spec.js"],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
