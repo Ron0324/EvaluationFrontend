@@ -153,7 +153,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
  
  const [IconActive, SetIconActive] = useState({
    home: false,
-   profile: true,
+   evaluation: true,
    settings: false,
  });
  
