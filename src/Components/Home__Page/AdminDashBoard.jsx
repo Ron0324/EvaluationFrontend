@@ -860,7 +860,7 @@ const [criteriaList, setCriteriaList] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://52.199.99.23:8000/Citeria/show_criteria/');
+        const response = await fetch('http://52.199.99.23:8000/Criteria/show_criteria/');
         const data = await response.json();
         setCriteriaList(data);
       } catch (error) {
