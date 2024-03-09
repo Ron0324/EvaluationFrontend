@@ -4,6 +4,9 @@ import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
 import cjeck from "../Assets/cjeck.png"
 import {  useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import file from '../Assets/file.png';
+import home from '../Assets/home.png';
+import '../Home__Page/HomepageStyle.css';
 
 
 export const Evaluation = () => {
@@ -252,18 +255,17 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
 
 <div className='icon-menu'>
   
-  <div className={`icons ${IconActive.home? 'active':''}`} onClick={()=>ToggleActive('home')}>
+  <div className={`icons ${IconActive.home? 'active':''}`} onClick={()=>ToggleActive('home')}> 
     <div className='home-icon'>
-    <label name='home-circle' htmlFor="home">HOME</label>
+    <img src={home} alt="home" />
     </div>
 </div>
 
-<div className={`icons ${IconActive.profile? 'active':'inactive'}`} onClick={()=>ToggleActive('profile')}>
-  <div className='profile'></div>
- 
- <label name='user-circle' htmlFor="user">USER</label>
+<div className={`icons ${IconActive.evaluation? 'active':'inactive'}`} >
+  <div className='home-icon'>
+ <img src={file} alt="file" />
  </div>
-
+ </div>
 
 </div>
 

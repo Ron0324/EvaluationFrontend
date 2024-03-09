@@ -9,24 +9,224 @@
     justify-content: center;
     border-bottom: rgb(209, 173, 13) solid .2em;
 }
+@media (min-width: 280px) {
+.lft-slctn{
+    width: 34%;
+}
+.lft-slctn h3{
+
+    font-size: smaller;
+}
 .newlogo{
     position: absolute;
-    left: 1em;
+    left: .3em;
+}
+.newlogo img{
+    width: 1.9em;
+    height: 1.9em;
+}
+.top-header{
+    height: 2em;
+    
+    
+}
+.search{
+    left: 3em;
+    top: 0;
+}
+.search input{
+    height: 0.6em;
+    width: 5em;
+}
+.dflt-prfl{
+    right: 1.2em;
+}
+.dflt-prfl-img {
+    height: 2em;
+    width: 2em;
+}
+.newcontainer{
+    grid-template-columns: repeat(2, minmax(0px, 18em));
+    max-height: 86%;
+    margin-left: -0.2em;    
+    
+}
+.fclty-hldr{
+    max-height: 12em;
+    width: 6.9em ;
+    font-size: smaller;
+    box-shadow: rgba(25, 194, 231, 0.89) 2px 4px 4px;
+    margin-bottom: 0.2em;
+    border-radius: 4px;
+}
+
+.fclty-hldr img{
+    margin: 0.5em;
+    height: 2.9em;
+    width: 40%;
+}
+.inf{
+    margin-left: 0.5em;
+    font-size: xx-small;
+}
+.sr-nm{
+    margin-left: 0.2em;
+}
+.inf ul{
+    margin: 0;
+}
+.inf button{
+    width: 4.5em;
+    height: 1.5em;
+    font-size: xx-small;
+    padding: 0;
+}
+
+.icon-menu{
+    gap: 1em;
+    margin-left: 2em;
+}
+.home-icon{
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    width: 2.2em;
+    height: 2.2em;
+    
+    align-items: center;
+    
+
+}
+.icon-menu img{
+    object-fit: cover;
+    height: 1.5em;
+    width: 1.7em;
+    
+}
+.icons:hover{
+    background: #273d6e;
+    border-radius: 4px;
+   
+}
+.icons.active{
+    background: #273d6e;
+    border-radius: 4px;
+}
+}
+@media (min-width: 425px) {
+    .newcontainer{
+        grid-template-columns: repeat(3, minmax(0px, 18em));
+    }
+    .lft-slctn{
+        width: 27%;
+    }
+}
+@media (min-width: 620px) {
+    .newcontainer{
+        grid-template-columns: repeat(4, minmax(0px, 18em));
+    }
+    .lft-slctn{
+        width: 23%;
+    }
+    .fclty-hldr {
+        max-height: 13em;
+        width: 7.9em;
+        
+    }
+
+    .fclty-hldr img {
+        
+        height: 3.5em;
+        width: 44%;
+    }
+    .inf {
+        margin-left: 0.5em;
+        font-size: small;
+    }
+    .inf button {
+        width: 5.5em;
+        height: 1.8em;
+        font-size: smaller;
+    }
+
+}
+@media (min-width: 896px) { 
+    .fclty-hldr {
+        max-height: 30em;
+        width: 15.9em;
+        
+    }
+
+    .newcontainer {
+        grid-template-columns: repeat(4, minmax(0px, 18em));
+    }
+    .fclty-hldr img {
+        
+        height: 7.5em;
+        width: 7.5em;
+    }
+    .inf {
+        margin-left: 0.5em;
+        font-size: x-large;
+    }
+    .lft-slctn {
+        width: 14%;
+    }
+    .top-header {
+        height: 2.8em;
+    }
+    .newlogo img {
+        width: 2.9em;
+        height: 2.9em;
+    }
+    .search {
+        left: 4em;
+        top: 0.5em;
+    }
+    .search input {
+        height: 0.9em;
+        width: 13em;
+    }
+    .home-icon {
+       
+        width: 3.9em;  
+    }
+    .icon-menu img {
+
+        height: 2em;
+        width: 2em;
+    }
+    .dflt-prfl-img {
+        height: 2.6em;
+        width: 2.6em;
+    }
+    .dflt-prfl {
+        right: 1.9em;
+    }
+
+    .lft-slctn h3 {
+        font-size: larger;
+    }
+}
+
+@media (min-width: 1000px){
+    .newcontainer {
+        grid-template-columns: repeat(6, minmax(0px, 18em));
+    }
+
 }
 .newlogo img{
     object-fit: cover;
-    width: 2.9em;
-    height: 2.9em;
+ 
 }
 .dflt-prfl {
     position: absolute;
-    right: 2em;
+    
 }
 .dflt-prfl-img{
     right: 0;
     object-fit: cover;
-    height: 3em;
-    width: 3em;
+   
     border-radius: 2.5em;
     
 }
@@ -72,12 +272,11 @@
 .search{
     padding-top: 0.5em;
     position: absolute;
-    left: 7em;
+  
 
 }
 .search input{
-    height: 1em;
-    width: 20em;
+   
     border-radius: 0.5em;
     border: none;
     outline: none;
@@ -86,8 +285,7 @@
 .icon-menu{
     display: grid;
     grid-auto-flow: column;
-    gap: 7em;
-    margin-left: 7em;
+ 
     fill: rgb(164, 194, 241);
 
 }

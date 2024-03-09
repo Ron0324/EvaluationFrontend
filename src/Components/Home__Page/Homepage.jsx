@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import './HomepageStyle.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
-
+import file from '../Assets/file.png';
+import home from '../Assets/home.png';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -166,19 +167,17 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
 
 <div className='icon-menu'>
   
-  <div className={`icons ${IconActive.home? 'active':''}`}>
+  <div className={`icons ${IconActive.home? 'active':''}`}  >
     <div className='home-icon'>
-    
-      <label name='home-circle' htmlFor="home">HOME</label>
+    <img src={home} alt="home" />
     </div>
 </div>
 
-<div className={`icons ${IconActive.evaluation? 'active':'inactive'}`} >
-  <div className='evaluation'></div>
- 
- <label name='user-circle' htmlFor="user">User</label>
+<div className={`icons ${IconActive.evaluation? 'active':''}`}>
+  <div className='home-icon'>
+ <img src={file} alt="" />
  </div>
-
+ </div>
 
 </div>
 
