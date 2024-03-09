@@ -70,14 +70,14 @@ const [isExpanded, setIsExpanded] = useState(false);
 
   const containerStyles = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, minmax(0, 18em))',
-    maxHeight: '41.7em',
+    
+
     width:'auto',
     overflow: 'auto',
     gridColumnGap: '10px',
     gridRowGap: '10px',
     marginTop: '2em',
-    marginLeft:'1.8em',
+ 
   
 
     /* Hide scrollbar for WebKit browsers */
@@ -130,7 +130,7 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
 
 
   const facultycontainer = {
-    background:'#0a193a',maxHeight:'30em',borderBottom:'Solid yellow 2px',
+    background:'#0a193a',borderBottom:'Solid yellow 2px',
     overflow: 'auto',
    /* Hide scrollbar for WebKit browsers */
    scrollbarWidth: 'thin', /* Firefox */
