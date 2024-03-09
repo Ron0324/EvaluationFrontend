@@ -193,12 +193,12 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
 
 <div className='content'>
 
-<div className='lft-slctn' style= {{height:'100%',width:'20%',backgroundColor:'#0a193a',borderRadius:'8px', borderTop:'rgb(209, 173, 13) solid 3px', borderBottom:'rgb(209, 173, 13) solid 3px', borderRight:'rgb(209, 173, 13) solid 3px',borderLeft:'none', borderTopLeftRadius:'0'}}>
+<div className='lft-slctn' style= {{height:'100%',backgroundColor:'#0a193a',borderRadius:'8px', borderTop:'rgb(209, 173, 13) solid 3px', borderBottom:'rgb(209, 173, 13) solid 3px', borderRight:'rgb(209, 173, 13) solid 3px',borderLeft:'none', borderTopLeftRadius:'0'}}>
 
 
 
 <h3 className={`admn-slctn ${IconActive.faculty? 'active':'inactive'}`}onClick={()=>ToggleActive('faculty')} 
-style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em', borderBottom:'1px solid #a39d9d'  } }>
+style={{cursor: 'default', display:'flex', width:'93%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em', borderBottom:'1px solid #a39d9d'  } }>
   Faculty
 
 </h3>
@@ -207,7 +207,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 
 
 <h3 className={`admn-slctn ${IconActive.editProfile? 'active':'inactive'}`} onClick={()=>ToggleActive('editProfile')}
- style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em',borderBottom:'1px solid #a39d9d'  } }>
+ style={{cursor: 'default', display:'flex', width:'93%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em',borderBottom:'1px solid #a39d9d'  } }>
   Edit Profile
 
 </h3>
@@ -221,26 +221,28 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
     style={{display: IconActive.faculty ? 'block' : 'none', paddingLeft:'1em',background:'#b5cad9',height: '100%',width: '85%',boxShadow: '0 0 10px rgba(84, 76, 76, 0.6)',borderRadius: '8px',paddingRight: '1em',color: 'black', }}
      > 
 
-<div style={containerStyles}>
+<div style={containerStyles} className='newcontainer'>
 
 {facultyList.map(faculty => (
-  <div key={faculty.id} style={facultycontainer}>
+  <div key={faculty.id} style={facultycontainer} className='fclty-hldr'>
 
   {faculty.selected_image ? (
-  <img src={faculty.selected_image} alt="Faculty" style={{margin:'1.5em',height:'13em',width:'82%',objectFit:'cover'}} />
+  <img src={faculty.selected_image} alt="Faculty" style={{objectFit:'cover'}} />
 ) : (
-  <img src={dflt_prfl_img} alt="Default Profile" style={{margin:'1.5em',height:'13em',width:'82%',objectFit:'cover'}} />
+  <img src={dflt_prfl_img} alt="Default Profile" style={{objectFit:'cover'}} />
 )}
 
 
 
-  <div style={{marginLeft:'1em',fontSize:'1.3em',fontFamily:'auto',fontWeight:'500',color:'white'}}>
+  <div style={{fontFamily:'auto',fontWeight:'500',color:'white'}} className='inf'>
   <label htmlFor="">Id: {faculty.id_number}</label>
   <div>
   <label htmlFor="">{faculty.first_name}</label>
-<label style={{marginLeft:'1em'}} htmlFor="">{faculty.last_name}</label>
+<label className='sr-nm' htmlFor="lastname">{faculty.last_name}</label>
   </div>
   <label htmlFor="">{faculty.status}</label>
+  <div><label htmlFor="">Subjects:</label></div>
+  
 <ul>
 {faculty.subjects.map(subject => (
                 <li key={subject.id}>{subject.Subname}</li>
@@ -250,7 +252,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 <button
 onClick={()=>ToggleActive('evaluation', faculty.id)}
      
-      style={{width: '5em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+      style={{background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
       
       > Evaluate</button>
       
