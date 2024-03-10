@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect,  } from 'react';
 import './LogInForm.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuth } from '../AuthContext';
+
 
 
 
@@ -12,7 +12,6 @@ export const LogInForm = () => {
   const [idNumber, setIdNumber] = useState('');
   const [password, setPassword] = useState('');
   const [selectedUserType, setSelectedUserType] = useState('');
-  const { login } = useAuth();
   
 
 
@@ -46,15 +45,14 @@ export const LogInForm = () => {
   }, []);
 
 
- 
-
   
   const handleLoginButtonClick = async (e) => {
     e.preventDefault();
-    console.log('ID Number:', idNumber);
-    console.log('Password:', password);
+   
     const csrfToken = csrfTokenRef.current; // Use csrfTokenRef.current instead of calling getCsrfToken()
   
+
+    //Admin authentication
     if (selectedUserType === 'Admin') {
        if (!idNumber || !password) {
         alert('ID number and password cannot be empty');
@@ -64,7 +62,10 @@ export const LogInForm = () => {
       }else{
         alert('invalid Credentials')
       }
-    }  else if (selectedUserType === 'Student') {
+    } 
+    
+    //Student login authentication
+    else if (selectedUserType === 'Student') {
       try {
         // Check if idNumber and password are not empty
         if (!idNumber || !password) {
@@ -77,7 +78,7 @@ export const LogInForm = () => {
         studentData.append('password', password);
         console.log('student Data: ',studentData)
       
-        const response = await fetch('http://52.199.99.23:8000/Courses/student_login/', {
+        const response = await fetch(' http://52.199.99.23:8000/Courses/student_login/', {
     method: 'POST',
     headers: {
         'X-CSRFToken': csrfToken,
@@ -113,14 +114,18 @@ export const LogInForm = () => {
         console.error('Error during authentication:', error);
       }
 
-    } else if (selectedUserType === 'Instructor') {
+    } 
+    
+    
+    //peer login authentication
+    else if (selectedUserType === 'Instructor') {
       try {
         const formData = new FormData();
         formData.append('id_number', idNumber);
         formData.append('password', password);
-        console.log('Faculty data: ',formData)
+        
   
-        const response = await fetch('http://52.199.99.23:8000/Add_faculty/faculty_login/', {
+        const response = await fetch(' http://52.199.99.23:8000/Add_faculty/faculty_login/', {
           method: 'POST',
           headers: {
             'X-CSRFToken': csrfToken,
@@ -131,8 +136,17 @@ export const LogInForm = () => {
         if (response.ok) {
           const responseData = await response.json();
          
-          
-          console.log('passing Faculty Data:', responseData.faculty);
+
+          const redirectUrl = responseData.redirect_url;
+          const facultydata = responseData.faculty;
+          localStorage.setItem('factData', JSON.stringify(facultydata));
+         
+           if (redirectUrl) {
+            window.location.href = redirectUrl;
+          } else {
+            // If no valid redirect URL is provided, reload the page
+            window.location.reload();
+          }
           
         }  else {
           console.error('Instructor login failed:', await response.text());

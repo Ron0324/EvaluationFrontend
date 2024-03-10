@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState,  useEffect,  } from 'react';
 import './HomepageStyle.css'
 import prmsu__logo from '../Assets/PrmsuLogo.png'
 import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
@@ -11,9 +11,20 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const Homepage = () => {
+  
+  const storedFacultyData = localStorage.getItem('factData');
+const facultyD = JSON.parse(storedFacultyData);
+
+  
+  
+  
+        
+  
 
 
   const navigate = useNavigate();
+
+  
 
   const handleClickLogOut = () => {
    // Navigate to LogIn page route when the Logout is clicked
@@ -108,7 +119,7 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
     // Function to fetch faculty data
     const fetchFacultyData = async () => {
       try {
-        const response = await fetch('http://52.199.99.23:8000/Add_faculty/show_all_faculty/');
+        const response = await fetch(' http://52.199.99.23:8000/Add_faculty/show_all_faculty/');
         const data = await response.json();
         setFacultyList(data);
         console.log(facultyList.selected_image)
@@ -182,7 +193,14 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
 </div>
 
 <div className='dflt-prfl'   onClick={() =>{SetMunuOpen(!MenuOpen)}}>
-  <img className='dflt-prfl-img' src={dflt_prfl_img} alt="" />
+
+  
+{facultyD.selected_image ? (
+  <img className='dflt-prfl-img' src={facultyD.selected_image} alt="Faculty" style={{objectFit:'cover'}} />
+) : (
+  <img className='dflt-prfl-img' src={dflt_prfl_img} alt="Default Profile" style={{objectFit:'cover'}} />
+)}
+  
 
 </div>
 
