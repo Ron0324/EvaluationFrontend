@@ -150,6 +150,9 @@
 }
 .plcy{
     font-size: 12px;
+    border-radius: 15px;
+    box-shadow: rgba(25, 194, 231, 0.89) 2px 4px 4px;
+    width: 21em;
 }
 .plcy-dn-msg {
     width: 16em;
@@ -172,9 +175,7 @@
     .custom-table{
         font-size: 14px;
     }
-    .plcy{
-        width: 21em;
-    }
+    
 }
 @media (min-width: 620px) {
     .newcontainer{
