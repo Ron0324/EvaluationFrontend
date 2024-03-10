@@ -125,7 +125,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
   }, [facultyId]);
 
 
- 
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const [comment, setComment] = useState('');
   const handleCommentChange = (e) => {
