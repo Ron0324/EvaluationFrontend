@@ -125,11 +125,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
   }, [facultyId]);
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can send the comment to your backend or perform other actions here.
-    console.log('Submitted comment:', comment);
-  };
+ 
 
   const [comment, setComment] = useState('');
   const handleCommentChange = (e) => {
@@ -176,26 +172,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
     const [profileImage, setProfileImage] = useState(dflt_prfl_img);
     const fileInputRef = useRef(null);
 
-    const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setProfileImage(e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    const handleButtonClick = () => {
-        // Trigger the file input when the button is clicked
-        fileInputRef.current.click();
-    };
-    const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleHeight = () => {
-    setIsExpanded(!isExpanded);
-  };
+    
 
 
   const [criteriaList, setCriteriaList] = useState([]);
@@ -236,9 +213,9 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
     setShowSuccess(!showSuccess);
 
   };
-    return (
-        <div>
-          
+  return (
+    <div>
+      
 
 
 
@@ -249,23 +226,24 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
 </div> 
 
 <div className='search'>
- 
-  <input type="text" placeholder='Search ID' />
+
+<input type="text" placeholder='Search ID' />
 </div>
 
+
 <div className='icon-menu'>
-  
-  <div className={`icons ${IconActive.home? 'active':''}`} onClick={()=>ToggleActive('home')}> 
-    <div className='home-icon'>
-    <img src={home} alt="home" />
-    </div>
+
+<div className={`icons ${IconActive.home? 'active':''}`} onClick={()=>ToggleActive('home')}> 
+<div className='home-icon'>
+<img src={home} alt="home" />
+</div>
 </div>
 
 <div className={`icons ${IconActive.evaluation? 'active':'inactive'}`} >
-  <div className='home-icon'>
- <img src={file} alt="file" />
- </div>
- </div>
+<div className='home-icon'>
+<img src={file} alt="file" />
+</div>
+</div>
 
 </div>
 
@@ -274,223 +252,218 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
 </div>
 
 </div>
-            <div className='content'>
+        <div className='content'>
 
 <div className='content'>
 <div className='mainview'>
 
 <div className={`evltn-ctnr ${isExpanded ? 'expanded' : ''}`}>
-  <div className={`evltn-hdr ${isExpanded ? 'expanded' : ''}`}>
-  {facultyInfo && (
-        <>
-    <div className='evltn-dp'>
-    <img src={facultyInfo.selected_image } alt="user profile" />
-    </div>
+<div className={`evltn-hdr ${isExpanded ? 'expanded' : ''}`}>
+{facultyInfo && (
+    <>
+<div className='evltn-dp'>
+<img src={facultyInfo.selected_image } alt="user profile" />
+</div>
 
-    <div>
-      
-          <div className='evltn-p'>
-    <p> <span className='UserName' >
-    <span className='FirstName'>{facultyInfo.first_name}</span>
-    <span> </span>
-    <span className='MiddleInitial'>M</span>
-    <span> </span>
-     <span className='LastName'>{facultyInfo.last_name}
-     </span>
-     <span> </span>
-     
-     </span>
-    <br />
-    </p>
-    <p className='evltn-Idnum'>
-    <span className='IdNumber'>{facultyInfo.id_number} </span>
-    </p>
-    <button onClick={toggleHeight}>Show more Details</button>
-    <div className=''></div>
-       
-    </div>
-    
-    </div>
-    </>
-      )}
-    
-  </div>
+<div>
+  
+      <div className='evltn-p'>
+<p> 
+  <span className='UserName' >
+<div> <span className='FirstName'>{facultyInfo.first_name}</span></div>
+<div><span className='LastName'>{facultyInfo.last_name}
+ </span></div>
+ 
+ <div><span className='IdNumber'>{facultyInfo.id_number} </span>
+ </div>
+ </span>
+<br />
+</p>
+
+</div>
+
+</div>
+</>
+  )}
+
+</div>
+
+<table className='custom-table'>
+    <thead>
+      <tr>
+        <th>Scale</th>
+        <th>Discriptive Rating</th>
+        <th>Qualitative Descriptive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>Outstanding</td>
+        <td className='dscrptv-p'>The performance almost  always exceeds the job requirments. <br />    The faculty is an exceptional role model
+        </td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td >Very Satisfactory</td>
+        <td className='dscrptv-p'>The performance meets and often exceeds the jobs requirements <br />
+            
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Satisfactory</td>
+        <td className='dscrptv-p'>The performance meets and the jobs requirements
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Fair</td>
+        <td className='dscrptv-p'>The performance needs some developments to meet job requirements 
+        </td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Poor</td>
+        <td className='dscrptv-p'>The performance fails to meet job requirements 
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <table className='custom-table'>
-        <thead>
-          <tr>
-            <th>Scale</th>
-            <th>Discriptive Rating</th>
-            <th>Qualitative Descriptive</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>5</td>
-            <td>Outstanding</td>
-            <td className='dscrptv-p'>The performance almost  always exceeds the job requirments. <br />    The faculty is an exceptional role model
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td >Very Satisfactory</td>
-            <td className='dscrptv-p'>The performance meets and often exceeds the jobs requirements <br />
-                
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Satisfactory</td>
-            <td className='dscrptv-p'>The performance meets and the jobs requirements
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Fair</td>
-            <td className='dscrptv-p'>The performance needs some developments to meet job requirements 
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Poor</td>
-            <td className='dscrptv-p'>The performance fails to meet job requirements 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <thead>
+      <tr>
+        <th>A. Commitment</th>
+        <th colSpan={5}>Scale</th>
 
-      <table className='custom-table'>
-        <thead>
-          <tr>
-            <th>A. Commitment</th>
-            <th colSpan={5}>Scale</th>
-  
-          </tr>
-        </thead> 
+      </tr>
+    </thead> 
 
 
 
-        <tbody>
-  {criteriaList.map((criteria) => (
-    <tr key={criteria.id}> 
-      <td className='dscrptv-p'>{criteria.criteria_a}</td>
-      {[5, 4, 3, 2, 1].map((number) => (
-        <td
-          key={number}
-          style={getTdStyle(criteria.id, number)}
-          onClick={() => handleTdClick(criteria.id, number)}
-        >
-          {number}
-        </td>
-      ))}
-    </tr>
+    <tbody>
+{criteriaList.map((criteria) => (
+<tr key={criteria.id}> 
+  <td className='dscrptv-p'>{criteria.criteria_a}</td>
+  {[5, 4, 3, 2, 1].map((number) => (
+    <td
+      key={number}
+      style={getTdStyle(criteria.id, number)}
+      onClick={() => handleTdClick(criteria.id, number)}
+    >
+      {number}
+    </td>
   ))}
+</tr>
+))}
 </tbody>
-      </table>
+  </table>
 
-      <table className='custom-table'>
-        <thead>
-          <tr>
-            <th>B. Knowledge of Subject</th>
-            <th colSpan={5}>Scale</th>
-  
-          </tr>
-        </thead>
+  <table className='custom-table'>
+    <thead>
+      <tr>
+        <th>B. Knowledge of Subject</th>
+        <th colSpan={5}>Scale</th>
 
-        
-        <tbody>
-  {criteriaList.map((criteria) => (
-    <tr key={criteria.id}> 
-      <td className='dscrptv-p'>{criteria.criteria_b}</td>
-      {[5, 4, 3, 2, 1].map((number) => (
-        <td
-          key={number}
-          style={getAnotherTdStyle(criteria.id, number)}
-          onClick={() =>  handleAnotherTdClick(criteria.id, number)}
-        >
-          {number}
-        </td>
-      ))}
-    </tr>
+      </tr>
+    </thead>
+
+    
+    <tbody>
+{criteriaList.map((criteria) => (
+<tr key={criteria.id}> 
+  <td className='dscrptv-p'>{criteria.criteria_b}</td>
+  {[5, 4, 3, 2, 1].map((number) => (
+    <td
+      key={number}
+      style={getAnotherTdStyle(criteria.id, number)}
+      onClick={() =>  handleAnotherTdClick(criteria.id, number)}
+    >
+      {number}
+    </td>
   ))}
+</tr>
+))}
 </tbody>
-      </table>
+  </table>
 
-      <table className='custom-table'>
-        <thead>
-          <tr>
-            <th>C. Teaching for Independent Learning</th>
-            <th colSpan={5}>Scale</th>
-  
-          </tr>
-        </thead>
-        <tbody>
-  {criteriaList.map((criteria) => (
-    <tr key={criteria.id}> 
-      <td className='dscrptv-p'>{criteria.criteria_c}</td>
-      {[5, 4, 3, 2, 1].map((number) => (
-        <td
-          key={number}
-          style={getAdditionalTdStyle (criteria.id, number)}
-          onClick={() => handleAdditionalTdClick(criteria.id, number)}
-        >
-          {number}
-        </td>
-      ))}
-    </tr>
+  <table className='custom-table'>
+    <thead>
+      <tr>
+        <th>C. Teaching for Independent Learning</th>
+        <th colSpan={5}>Scale</th>
+
+      </tr>
+    </thead>
+    <tbody>
+{criteriaList.map((criteria) => (
+<tr key={criteria.id}> 
+  <td className='dscrptv-p'>{criteria.criteria_c}</td>
+  {[5, 4, 3, 2, 1].map((number) => (
+    <td
+      key={number}
+      style={getAdditionalTdStyle (criteria.id, number)}
+      onClick={() => handleAdditionalTdClick(criteria.id, number)}
+    >
+      {number}
+    </td>
   ))}
+</tr>
+))}
 </tbody>
-      </table>
-      <table className='custom-table'>
-        <thead>
-          <tr>
-            <th>D. Management Learning</th>
-            <th colSpan={5}>Scale</th>
-  
-          </tr>
-        </thead>
-        <tbody>
-  {criteriaList.map((criteria) => (
-    <tr key={criteria.id}> 
-      <td className='dscrptv-p'>{criteria.criteria_d}</td>
-      {[5, 4, 3, 2, 1].map((number) => (
-        <td
-          key={number}
-          style={getYetAnotherTdStyle(criteria.id, number)}
-          onClick={() => handleYetAnotherTdClick(criteria.id, number)}
-        >
-          {number}
-        </td>
-      ))}
-    </tr>
+  </table>
+  <table className='custom-table'>
+    <thead>
+      <tr>
+        <th>D. Management Learning</th>
+        <th colSpan={5}>Scale</th>
+
+      </tr>
+    </thead>
+    <tbody>
+{criteriaList.map((criteria) => (
+<tr key={criteria.id}> 
+  <td className='dscrptv-p'>{criteria.criteria_d}</td>
+  {[5, 4, 3, 2, 1].map((number) => (
+    <td
+      key={number}
+      style={getYetAnotherTdStyle(criteria.id, number)}
+      onClick={() => handleYetAnotherTdClick(criteria.id, number)}
+    >
+      {number}
+    </td>
   ))}
+</tr>
+))}
 </tbody>
-      </table>
-      
+  </table>
+  
 
-      <form onSubmit={handleSubmit}>
-      <textarea style={{width:"40em", height:'10em', marginTop:'0'}}
-        value={comment}
-        onChange={handleCommentChange}
-        placeholder="Enter your comment here"
-      />
-      <button style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginLeft:'1em', marginTop:'1em' }} onClick={togglePolicy}>Done</button>
-     
+  <div className='fdbck-sctn' >
+  <textarea
+    value={comment}
+    onChange={handleCommentChange}
+    placeholder="Enter your comment here"
+  />
+  <button style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginLeft:'1em', marginTop:'1em' }} 
+  onClick={togglePolicy}>Done</button>
+ 
 
-      <div style={{width:'36em',height:'12em',alignItems:'center',justifyContent:'center', flexDirection:'column', display: showSuccess? 'flex':'none',position:'absolute', top:'50%', right:'50%', transform:'translate(50%, -60%)', background:'#d9dcdf', color: 'black', padding:'1em',boxShadow :'rgb(25, 194, 231, 0.89) 2px 4px 4px'}}
-      ><img style={{objectFit:'cover',width:'10em',height:'10em'}} src={cjeck} alt="" />
+  <div className='plcy-dn-msg' style={{alignItems:'center',justifyContent:'center', flexDirection:'column', display: showSuccess? 'flex':'none',position:'absolute', top:'50%', right:'50%', transform:'translate(50%, -60%)', background:'#d9dcdf', color: 'black', padding:'1em',boxShadow :'rgb(25, 194, 231, 0.89) 2px 4px 4px'}}
+  ><img style={{objectFit:'cover'}} src={cjeck} alt="" />
 
-      <div> <button onClick={toggleUnDone}
-       style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginTop:'1em' }}
-       >Done</button></div
-       ></div>
+  <div> <button onClick={toggleUnDone}
+   style={{background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginTop:'1em' }}
+   >Done</button></div
+   ></div>
 
 
-      <div style={{ display:  showPolicy? 'block' : 'none',overflow:'auto', position:'absolute', top:'50%', right:'50%', transform:'translate(50%, -60%)', background:'white', color: 'black', padding:'1em',maxHeight:'45em', maxWidth:'36em'}}>
-       <label htmlFor=""> Name: <input placeholder='Optional' type="text" />
-       </label>
-        <p style={{display:'flex', flexDirection:'column', fontSize:'larger'}}>
-       <span style={{marginBottom:'1em',fontWeight:'600'}}>Privacy Policy for Anonymous Evaluation in PRMSU Castillejos</span> 
+  <div className='plcy' style={{ display:  showPolicy? 'block' : 'none',overflow:'auto', position:'absolute', top:'50%', right:'50%', transform:'translate(50%, -60%)', background:'white', color: 'black', padding:'1em',maxHeight:'45em', maxWidth:'36em'}}>
+   <label htmlFor=""> Name: <input placeholder='Optional' type="text" />
+   </label>
+    <p style={{display:'flex', flexDirection:'column', fontSize:'larger'}}>
+   <span style={{marginBottom:'1em',fontWeight:'600'}}>Privacy Policy for Anonymous Evaluation in PRMSU Castillejos</span> 
 
 <span>This Privacy Policy outlines the procedures for anonymous evaluations conducted through the PRMSU  Castillejos (President Ramon Magsaysay State University Castillejos branch)  evaluation system.</span>
 
@@ -517,16 +490,16 @@ Optional Identification:
 Optional identification details, if provided, will be stored securely, and access will be restricted to authorized personnel.</span>
 
 <span style={{marginTop:'1em'}}>By submiting  your Evaluation, you acknowledge and agree to the terms outlined in this Privacy Policy.</span>
-          
-        </p>
-        <button  style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginRight:'1em', marginTop:'1em' }}
-        onClick={toggleDone}>Submit</button>
+      
+    </p>
+    <button  style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginRight:'1em', marginTop:'1em' }}
+    onClick={toggleDone}>Submit</button>
 
-        <button onClick={togglePolicy}
-        style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginRight:'1em', marginTop:'1em' }} >Cancel</button>
+    <button onClick={togglePolicy}
+    style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginRight:'1em', marginTop:'1em' }} >Cancel</button>
 
-      </div>
-    </form>
+  </div>
+</div >
 
 
 </div>
@@ -534,25 +507,25 @@ Optional identification details, if provided, will be stored securely, and acces
 <div ></div>
 
 </div>
-        
-        </div>
+    
+    </div>
 
 
-        <div className={`lg-out-mn ${MenuOpen? 'active':'inactive'}`} id='menu' >
+    <div className={`lg-out-mn ${MenuOpen? 'active':'inactive'}`} id='menu' >
 <ul >
-  <li onClick={handleClickCreateNewuser}>Assign New Admin</li>
-  <hr />
-   <li>Start Evalution</li>
-  <hr />
-  <li onClick={handleClickLogOut}>Log Out</li>
-  <hr />
-  </ul>
+<li onClick={handleClickCreateNewuser}>Assign New Admin</li>
+<hr />
+<li>Start Evalution</li>
+<hr />
+<li onClick={handleClickLogOut}>Log Out</li>
+<hr />
+</ul>
 </div>
 </div>
 
 
 
 
-        </div>
-    );
+    </div>
+);
 };

@@ -52,23 +52,22 @@
     
 }
 .fclty-hldr{
-    max-height: 19em;
-    width: 9.9em;
+    max-height: 12em;
+    width: 6.9em ;
     font-size: smaller;
     box-shadow: rgba(25, 194, 231, 0.89) 2px 4px 4px;
     margin-bottom: 0.2em;
     border-radius: 4px;
-    
 }
 
 .fclty-hldr img{
     margin: 0.5em;
-    height: 7.9em;
-    width: 8.9em 
+    height: 2.9em;
+    width: 40%;
 }
 .inf{
     margin-left: 0.5em;
-   
+    font-size: xx-small;
 }
 .sr-nm{
     margin-left: 0.2em;
@@ -78,8 +77,8 @@
 }
 .inf button{
     width: 4.5em;
-    height: 2.5em;
-    font-size: smaller;
+    height: 1.5em;
+    font-size: xx-small;
     padding: 0;
 }
 
@@ -113,49 +112,144 @@
     background: #273d6e;
     border-radius: 4px;
 }
+
+.evltn-hdr p {
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+.custom-table {
+    margin-top: 1em;
+    border-collapse: collapse;
+    border-radius: 2px;
+    margin-bottom: 5em;
+    line-height: 1.2;
+    letter-spacing: 1.2px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.custom-table td {
+    background-position: center center;
+   
+}
+.custom-table th, .custom-table td {
+    padding: 5px;
+}
+.fdbck-sctn{
+    margin-bottom: 6em;
+}
+.fdbck-sctn textarea{
+    width: 100%;
+    height: 6em;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    font-style: italic;
+}
+.plcy{
+    font-size: 12px;
+}
+.plcy-dn-msg {
+    width: 16em;
+    height: 6em;
+    border-radius: 3px;
+}
+.plcy-dn-msg img{
+    width: 4em;
+    height: 4em;
+}
+
 }
 @media (min-width: 425px) {
-    .newcontainer{
-        grid-template-columns: repeat(2, minmax(0px, 18em));
-    }
-    .lft-slctn{
-        width: 27%;
-    }
-}
-@media (min-width: 620px) {
     .newcontainer{
         grid-template-columns: repeat(3, minmax(0px, 18em));
     }
     .lft-slctn{
+        width: 27%;
+    }
+    .custom-table{
+        font-size: 14px;
+    }
+    .plcy{
+        width: 21em;
+    }
+}
+@media (min-width: 620px) {
+    .newcontainer{
+        grid-template-columns: repeat(4, minmax(0px, 18em));
+    }
+    .lft-slctn{
         width: 23%;
     }
-    
+    .fclty-hldr {
+        max-height: 13em;
+        width: 7.9em;
+        
+    }
 
-    
+    .fclty-hldr img {
+        
+        height: 3.5em;
+        width: 44%;
+    }
     .inf {
         margin-left: 0.5em;
         font-size: small;
     }
     .inf button {
         width: 5.5em;
-        
+        height: 1.8em;
+        font-size: smaller;
     }
+    .UserName{
+        display: flex;
+        margin-top: 1em;
+    }
+    .UserName span{
+        margin-left:.5em;
+    }
+    .plcy{
+        font-size: 13px;
+        width: 26em;
+    }
+   .plcy-dn-msg{
+    width: 18em;
+    height: 8em;
+    width: 24em;
+    height: 10em;
+    width: 24em;
+    height: 13em;
+   }
+   .plcy-dn-msg img{
+    width: 6em;
+    height: 6em;
+    width: 9em;
+    height: 9em;
+    width: 11em;
+    height: 11em;
+   }
+   .plcy-dn-msg button{
+    width: 9em;
+    height: 1.9em;
+}
 
 }
 @media (min-width: 896px) { 
     .fclty-hldr {
-        max-height: 33em;
-        width: 17.9em;
+        max-height: 30em;
+        width: 15.9em;
         
     }
 
     .newcontainer {
-        grid-template-columns: repeat(3, minmax(0px, 18em));
+        grid-template-columns: repeat(4, minmax(0px, 18em));
     }
     .fclty-hldr img {
         
-        height: 16.5em;
-        width: 16.7em;
+        height: 7.5em;
+        width: 7.5em;
     }
     .inf {
         margin-left: 0.5em;
@@ -199,12 +293,67 @@
     .lft-slctn h3 {
         font-size: larger;
     }
+    .evltn-hdr p {
+        font-size: 37px;
+        margin-bottom: 0;
+    }
+    .UserName {
+        margin-top: 0em;
+    }
+    .custom-table{
+        line-height: 2.2;
+        font-size: 19px;
+
+    }
+    .fdbck-sctn textarea {
+        
+        height: 4em;
+        font-size: 17px;
+       
+    }
+    .plcy {
+        font-size: 16px;
+        width: 29em;
+        height: 35em;
+    }
+    .plcy-dn-msg{
+        width: 24em;
+        height: 10em;
+       
+       }
+       .plcy-dn-msg img{
+        width: 9em;
+        height: 9em;
+       
+       }
+     
+    
+
 }
+
+
 
 @media (min-width: 1000px){
     .newcontainer {
-        grid-template-columns: repeat(5, minmax(0px, 18em));
+        grid-template-columns: repeat(6, minmax(0px, 18em));
     }
+    .plcy {
+        font-size: 16px;
+        width: 36em;
+        height: 45em;
+    }
+    .plcy button{
+        margin-bottom: 3em;
+    }
+    .plcy-dn-msg{
+        height: 13em;
+       }
+    .plcy-dn-msg img{
+    width: 11em;
+    height: 11em;
+    }
+   
+
 
 }
 .newlogo img{
@@ -374,13 +523,14 @@ display: flex;
 .evltn-ctnr{
     width: 96%;
     padding: 1em;
-    height: 171em;
+    height: 100%;
     background: #0a193a;
     margin-top: 1em;
     border-radius: 1em;
     border: rgb(209, 173, 13) solid 0.2em;
     cursor: default;
     font-family: serif;
+    overflow: auto;
 }
 .mainview::-webkit-scrollbar{
     width: 8px;
@@ -398,12 +548,7 @@ display: flex;
 }
 .evltn-hdr p{
     color:  rgb(255, 255, 255);
-    margin: 0;
-    margin-left: 1em;
-    font-size: 40px;
-    font-weight: 500;
-    display: table-caption;
-    letter-spacing: 6px;
+  
 }
 .evltn-dp img{ 
     width: 6em;
@@ -417,21 +562,12 @@ display: flex;
     font-size: 24px !important;
     font-weight: 600 !important;
 }
-.custom-table {
-    margin-top: 1em;
-    border-collapse: collapse;
-    width: 100%;
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 5em ;
-    line-height: 2;
-    letter-spacing: 1.2px;
-  }
+
   
   .custom-table th, .custom-table td {
     border: rgb(209 173 13 / 16%) solid .13em;
     text-align: center;
-    padding: 8px;
+ 
     
   }
   
