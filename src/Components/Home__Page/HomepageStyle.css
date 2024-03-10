@@ -52,8 +52,8 @@
     
 }
 .fclty-hldr{
-    max-height: 12em;
-    width: 6.9em ;
+    max-height: 19em;
+    width: 9.9em;
     font-size: smaller;
     box-shadow: rgba(25, 194, 231, 0.89) 2px 4px 4px;
     margin-bottom: 0.2em;
@@ -62,12 +62,12 @@
 
 .fclty-hldr img{
     margin: 0.5em;
-    height: 2.9em;
-    width: 40%;
+    height: 7.9em;
+    width: 8.9em;
 }
 .inf{
     margin-left: 0.5em;
-    font-size: xx-small;
+    
 }
 .sr-nm{
     margin-left: 0.2em;
@@ -77,8 +77,8 @@
 }
 .inf button{
     width: 4.5em;
-    height: 1.5em;
-    font-size: xx-small;
+    height: 2.5em;
+    font-size: smaller;
     padding: 0;
 }
 
@@ -164,7 +164,7 @@
 }
 @media (min-width: 425px) {
     .newcontainer{
-        grid-template-columns: repeat(3, minmax(0px, 18em));
+        grid-template-columns: repeat(2, minmax(0px, 18em));
     }
     .lft-slctn{
         width: 27%;
@@ -178,7 +178,7 @@
 }
 @media (min-width: 620px) {
     .newcontainer{
-        grid-template-columns: repeat(4, minmax(0px, 18em));
+        grid-template-columns: repeat(3, minmax(0px, 18em));
     }
     .lft-slctn{
         width: 23%;
@@ -200,8 +200,7 @@
     }
     .inf button {
         width: 5.5em;
-        height: 1.8em;
-        font-size: smaller;
+       
     }
     .UserName{
         display: flex;
@@ -238,18 +237,18 @@
 }
 @media (min-width: 896px) { 
     .fclty-hldr {
-        max-height: 30em;
-        width: 15.9em;
+        max-height: 33em;
+        width: 17.9em;
         
     }
 
     .newcontainer {
-        grid-template-columns: repeat(4, minmax(0px, 18em));
+        grid-template-columns: repeat(3, minmax(0px, 18em));
     }
     .fclty-hldr img {
         
-        height: 7.5em;
-        width: 7.5em;
+        height: 16.5em;
+        width: 16.7em;
     }
     .inf {
         margin-left: 0.5em;
@@ -335,7 +334,7 @@
 
 @media (min-width: 1000px){
     .newcontainer {
-        grid-template-columns: repeat(6, minmax(0px, 18em));
+        grid-template-columns: repeat(5, minmax(0px, 18em));
     }
     .plcy {
         font-size: 16px;
