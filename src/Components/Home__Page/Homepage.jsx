@@ -12,15 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Homepage = () => {
   
-  const storedFacultyData = localStorage.getItem('factData');
-const facultyD = JSON.parse(storedFacultyData);
-
-  
-  
-  
-        
-  
-
+ 
 
   const navigate = useNavigate();
 
@@ -194,12 +186,8 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
 
 <div className='dflt-prfl'   onClick={() =>{SetMunuOpen(!MenuOpen)}}>
 
-  
-{facultyD.selected_image ? (
-  <img className='dflt-prfl-img' src={facultyD.selected_image} alt="Faculty" style={{objectFit:'cover'}} />
-) : (
   <img className='dflt-prfl-img' src={dflt_prfl_img} alt="Default Profile" style={{objectFit:'cover'}} />
-)}
+
   
 
 </div>
