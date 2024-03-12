@@ -282,7 +282,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
 {facultyInfo.subjects && (
             <div className='SubjectList'>
               <label htmlFor="subjects">Subjects:</label>
-              <select id="subjects" name="subjects">
+              <select className='slctn-sbjcts' id="subjects" name="subjects">
                 {facultyInfo.subjects.map((subject, index) => (
                   <option key={index} value={subject}>{subject}</option>
                 ))}

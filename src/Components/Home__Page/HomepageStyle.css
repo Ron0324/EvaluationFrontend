@@ -163,6 +163,15 @@
 .plcy-dn-msg img{
     width: 4em;
     height: 4em;
+
+}
+
+.slctn-sbjcts{
+    background: #dfe2e3e3;
+    outline: none;
+    border-radius: 5px;
+    color: black;
+    font-family: initial;
 }
 
 }
@@ -238,6 +247,13 @@
 
 }
 @media (min-width: 896px) { 
+    .slctn-sbjcts{
+        width: 95px;
+        height: 32px;
+        font-size: 24px;
+    }
+    
+
     .fclty-hldr {
         max-height: 33em;
         width: 17.9em;
