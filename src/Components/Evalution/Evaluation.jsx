@@ -276,8 +276,20 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
  
  <div><span className='IdNumber'>{facultyInfo.id_number} </span>
  </div>
+ 
  </span>
 <br />
+{facultyInfo.subjects && (
+            <div className='SubjectList'>
+              <label htmlFor="subjects">Subjects:</label>
+              <select id="subjects" name="subjects">
+                {facultyInfo.subjects.map((subject, index) => (
+                  <option key={index} value={subject}>{subject}</option>
+                ))}
+              </select>
+              </div>
+          )}
+
 </p>
 
 </div>
@@ -513,10 +525,7 @@ Optional identification details, if provided, will be stored securely, and acces
 
     <div className={`lg-out-mn ${MenuOpen? 'active':'inactive'}`} id='menu' >
 <ul >
-<li onClick={handleClickCreateNewuser}>Assign New Admin</li>
-<hr />
-<li>Start Evalution</li>
-<hr />
+
 <li onClick={handleClickLogOut}>Log Out</li>
 <hr />
 </ul>

@@ -212,11 +212,7 @@ style={{cursor: 'default', display:'flex', width:'93%', height:'3em', fontFamily
 
 
 
-<h3 className={`admn-slctn ${IconActive.editProfile? 'active':'inactive'}`} onClick={()=>ToggleActive('editProfile')}
- style={{cursor: 'default', display:'flex', width:'93%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em',borderBottom:'1px solid #a39d9d'  } }>
-  Edit Profile
 
-</h3>
 
 
 
