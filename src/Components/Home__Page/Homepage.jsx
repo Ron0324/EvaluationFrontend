@@ -111,7 +111,7 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
     // Function to fetch faculty data
     const fetchFacultyData = async () => {
       try {
-        const response = await fetch(' http://13.239.99.118:8000/Add_faculty/show_all_faculty/');
+        const response = await fetch(' http://13.238.217.68:8000/Add_faculty/show_all_faculty/');
         const data = await response.json();
         setFacultyList(data);
         console.log(facultyList.selected_image)
