@@ -111,7 +111,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
   useEffect(() => {
     const fetchFacultyInfo = async () => {
       try {
-        const response = await fetch(` http://52.199.99.23:8000/Add_faculty/faculty_info/${facultyId}/`);
+        const response = await fetch(` http://13.239.99.118:8000/Add_faculty/faculty_info/${facultyId}/`);
         const data = await response.json();
         setFacultyInfo(data);
         console.log('Faculty Info:', data); // Log the fetched data
@@ -180,7 +180,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(' http://52.199.99.23:8000/Criteria/show_criteria/');
+        const response = await fetch(' http://13.239.99.118:8000/Criteria/show_criteria/');
         const data = await response.json();
         setCriteriaList(data);
       } catch (error) {

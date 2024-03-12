@@ -78,7 +78,7 @@ export const LogInForm = () => {
         studentData.append('password', password);
         console.log('student Data: ',studentData)
       
-        const response = await fetch(' http://52.199.99.23:8000/Courses/student_login/', {
+        const response = await fetch(' http://13.239.99.118:8000/Courses/student_login/', {
     method: 'POST',
     headers: {
         'X-CSRFToken': csrfToken,
@@ -125,7 +125,7 @@ export const LogInForm = () => {
         formData.append('password', password);
         
   
-        const response = await fetch(' http://52.199.99.23:8000/Add_faculty/faculty_login/', {
+        const response = await fetch(' http://13.239.99.118:8000/Add_faculty/faculty_login/', {
           method: 'POST',
           headers: {
             'X-CSRFToken': csrfToken,
