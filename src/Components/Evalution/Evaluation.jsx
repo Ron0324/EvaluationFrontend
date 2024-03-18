@@ -139,11 +139,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
      navigate('/');
     };
  
-    const handleClickCreateNewuser = () => {
-     // Navigate to LogIn page route when the Logout is clicked
-     navigate('/Create/new-user/account');
-    };
- 
+   
     
  const [MenuOpen,SetMunuOpen] = useState(false);
  
@@ -211,6 +207,7 @@ const getYetAnotherTdStyle = (criteriaId, number) => {
   
   const toggleUnDone = () => {
     setShowSuccess(!showSuccess);
+    navigate('/homepage');
 
   };
   return (
