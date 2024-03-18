@@ -176,11 +176,7 @@ const [showNewFaculty, setShowNewFaculty] = useState(false);
     </div>
 </div>
 
-<div className={`icons ${IconActive.evaluation? 'active':''}`}>
-  <div className='home-icon'>
- <img src={file} alt="" />
- </div>
- </div>
+
 
 </div>
 
