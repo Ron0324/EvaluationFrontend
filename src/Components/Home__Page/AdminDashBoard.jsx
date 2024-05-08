@@ -583,7 +583,7 @@ const newhandleSubmit = async (e) => {
     formData.append('password', newformData.password);
     formData.append('status', newformData.status);
     formData.append('selected_image', newformData.selected_image);
-    const response = await fetch(' http://91.108.111.180/Add_faculty/save_faculty/', {
+    const response = await fetch(' http://91.108.111.180//Add_faculty/save_faculty/', {
       method: 'POST',
       headers: {
         'X-CSRFToken': getCsrfToken(),
@@ -875,7 +875,7 @@ const filteredAdmins = admins.filter((admins) =>
   useEffect(() => {
     // Fetch years associated with selected faculty member when selectedFaculty changes
     if (newselectedFaculty) {
-      fetch(`http://91.108.111.180/Add_faculty/get_years/${newselectedFaculty.id}`)
+      fetch(`http://91.108.111.180//Add_faculty/get_years/${newselectedFaculty.id}`)
         .then(response => response.json())
         .then(data => {
           setYears(data.years);
@@ -920,7 +920,7 @@ const filteredAdmins = admins.filter((admins) =>
   // Function to fetch subjects based on selected year, semester, and faculty
   const fetchSubjects = () => {
   if (newselectedFaculty && selectedYear && selectedSemester) {
-    fetch(`http://91.108.111.180/Add_faculty/fetch_subjects/${newselectedFaculty.id}/${selectedYear}/${selectedSemester}`)
+    fetch(`http://91.108.111.180//Add_faculty/fetch_subjects/${newselectedFaculty.id}/${selectedYear}/${selectedSemester}`)
       .then(response => response.json())
       .then(data => {
         newsetSubjects(data.subjects);
@@ -996,7 +996,7 @@ const subjectshandleSubmit = (e) => {
   const csrfToken = getCsrfToken();
 
   // Send form data to Django view using Fetch API
-  fetch('http://91.108.111.180/Add_faculty/add_subjects_to_faculty/', {
+  fetch('http://91.108.111.180//Add_faculty/add_subjects_to_faculty/', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
