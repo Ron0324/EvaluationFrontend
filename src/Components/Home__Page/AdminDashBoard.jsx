@@ -1001,7 +1001,7 @@ const subjectshandleSubmit = (e) => {
   const csrfToken = getCsrfToken();
 
   // Send form data to Django view using Fetch API
-  fetch('http://91.108.111.180/Add_faculty/add_subjects_to_faculty/', {
+  fetch('http://91.108.111.180:8000/Add_faculty/add_subjects_to_faculty/', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
