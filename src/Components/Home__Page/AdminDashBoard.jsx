@@ -875,7 +875,12 @@ const filteredAdmins = admins.filter((admins) =>
   useEffect(() => {
     // Fetch years associated with selected faculty member when selectedFaculty changes
     if (newselectedFaculty) {
-      fetch(`http://91.108.111.180//Add_faculty/get_years/${newselectedFaculty.id}`)
+      const csrfToken = getCsrfToken(); // Assuming getCsrfToken() function retrieves the CSRF token
+      fetch(`http://91.108.111.180/Add_faculty/get_years/${newselectedFaculty.id}`, {
+        headers: {
+          'X-CSRFToken': csrfToken // Add CSRF token to headers
+        }
+      })
         .then(response => response.json())
         .then(data => {
           setYears(data.years);
