@@ -261,7 +261,7 @@ const handleSubmit = async (e) => {
     try {
       const csrfToken = getCsrfToken();
       console.log('CSRF Token:', csrfToken);
-      const response = await fetch(' http://91.108.111.180:8000/Departments/api/save_department/', {
+      const response = await fetch('  http://91.108.111.180:8000/Departments/api/save_department/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -311,7 +311,7 @@ const [departments, setDepartments] = useState([]);
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch(` http://91.108.111.180:8000/Departments/show_departments/?search=${searchQuery}`);
+      const response = await fetch(`  http://91.108.111.180:8000/Departments/show_departments/?search=${searchQuery}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -354,7 +354,7 @@ const newhandleSubChange = (e) => {
 
 const handleAddSubject = async (departmentId) => {
     try {
-      const response = await fetch(` http://91.108.111.180:8000/Departments/api/save_multiple_subjects/${departmentId}/`, {
+      const response = await fetch(`  http://91.108.111.180:8000/Departments/api/save_multiple_subjects/${departmentId}/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -385,7 +385,7 @@ const [searchSubjQuery, setSearchSubjQuery] = useState('');
 
 const subFetchData = useCallback(async () => {
   try {
-    const response = await fetch(` http://91.108.111.180:8000/Departments/show_subjects/?search=${searchSubjQuery}`);
+    const response = await fetch(`  http://91.108.111.180:8000/Departments/show_subjects/?search=${searchSubjQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -419,7 +419,7 @@ useEffect(() => {
   // Function to fetch faculty data
   const fetchFacultyData = async () => {
     try {
-      const response = await fetch(' http://91.108.111.180:8000/Add_faculty/show_all_faculty/');
+      const response = await fetch('  http://91.108.111.180:8000/Add_faculty/show_all_faculty/');
       const data = await response.json();
       setFacultyList(data);
     } catch (error) {
@@ -448,7 +448,7 @@ useEffect(() => {
 
     const fetchSubjectsByDepartment = async (departmentId) => {
       try {
-          const response = await fetch(` http://91.108.111.180:8000/Departments/show_subjects_by_department/${departmentId}/`);
+          const response = await fetch(`  http://91.108.111.180:8000/Departments/show_subjects_by_department/${departmentId}/`);
           if (!response.ok) {
               throw new Error('Failed to fetch subjects');
           }
@@ -622,7 +622,7 @@ const handleDelete = () => {
       // Get the CSRF token from the cookie
       const csrfToken = getCsrfToken();
 
-      fetch(' http://91.108.111.180:8000/Add_faculty/delete_all_faculty_records/', {
+      fetch('  http://91.108.111.180:8000/Add_faculty/delete_all_faculty_records/', {
           method: 'DELETE',
           headers: {
             'X-CSRFToken': csrfToken, 
@@ -674,7 +674,7 @@ const Course_Submit = async (e) => {
     try {
       const csrfToken = getCsrfToken();
       console.log('CSRF Token:', csrfToken);
-      const response = await fetch(' http://91.108.111.180:8000/Courses/save_course/', {
+      const response = await fetch('  http://91.108.111.180:8000/Courses/save_course/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -723,7 +723,7 @@ const [student_searchQuery, student_setSearchQuery] = useState('');
 
 const student_fetchData = useCallback(async () => {
   try {
-    const response = await fetch(` http://91.108.111.180:8000/Courses/show_Students/?search=${student_searchQuery}`);
+    const response = await fetch(`  http://91.108.111.180:8000/Courses/show_Students/?search=${student_searchQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -756,7 +756,7 @@ const filteredStudents = students.filter((student) =>
 
 const updateAdmin = async () => {
   try {
-    const response = await fetch('http://91.108.111.180:8000/Courses/admin_update/', {
+    const response = await fetch(' http://91.108.111.180:8000/Courses/admin_update/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -780,7 +780,7 @@ const handleDeleteClick = async (adminId) => {
 
   if (confirmation) {
     try {
-      const response = await fetch(`http://91.108.111.180:8000/Courses/admin_delete/${adminId}/`, {
+      const response = await fetch(` http://91.108.111.180:8000/Courses/admin_delete/${adminId}/`, {
         method: 'DELETE',
       });
 
@@ -807,7 +807,7 @@ const [Admin_searchQuery, Admin_setSearchQuery] = useState('');
 
 const Admin_fetchData = useCallback(async () => {
   try {
-    const response = await fetch(` http://91.108.111.180:8000/Courses/show_admins/?search=${Admin_searchQuery}`);
+    const response = await fetch(`  http://91.108.111.180:8000/Courses/show_admins/?search=${Admin_searchQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -876,7 +876,7 @@ const filteredAdmins = admins.filter((admins) =>
     // Fetch years associated with selected faculty member when selectedFaculty changes
     if (newselectedFaculty) {
       const csrfToken = getCsrfToken(); // Assuming getCsrfToken() function retrieves the CSRF token
-      fetch(`http://91.108.111.180/Add_faculty/get_years/${newselectedFaculty.id}`, {
+      fetch(`  http://91.108.111.180:8000/Add_faculty/get_years/${newselectedFaculty.id}`, {
         headers: {
           'X-CSRFToken': csrfToken // Add CSRF token to headers
         }
@@ -925,7 +925,7 @@ const filteredAdmins = admins.filter((admins) =>
   // Function to fetch subjects based on selected year, semester, and faculty
   const fetchSubjects = () => {
   if (newselectedFaculty && selectedYear && selectedSemester) {
-    fetch(`http://91.108.111.180//Add_faculty/fetch_subjects/${newselectedFaculty.id}/${selectedYear}/${selectedSemester}`)
+    fetch(`http://91.108.111.180:8000/Add_faculty/fetch_subjects/${newselectedFaculty.id}/${selectedYear}/${selectedSemester}`)
       .then(response => response.json())
       .then(data => {
         newsetSubjects(data.subjects);
@@ -1001,7 +1001,7 @@ const subjectshandleSubmit = (e) => {
   const csrfToken = getCsrfToken();
 
   // Send form data to Django view using Fetch API
-  fetch('http://91.108.111.180//Add_faculty/add_subjects_to_faculty/', {
+  fetch('http://91.108.111.180/Add_faculty/add_subjects_to_faculty/', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -1034,7 +1034,7 @@ const [course_searchQuery, course_setSearchQuery] = useState('');
 
 const course_fetchData = useCallback(async () => {
   try {
-    const response = await fetch(` http://91.108.111.180:8000/Courses/show_courses/?search=${course_searchQuery}`);
+    const response = await fetch(`  http://91.108.111.180:8000/Courses/show_courses/?search=${course_searchQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -1099,7 +1099,7 @@ const handleSubmitStudent = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await fetch(' http://91.108.111.180:8000/Courses/create_students/', {
+    const response = await fetch('  http://91.108.111.180:8000/Courses/create_students/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1138,7 +1138,7 @@ const handleSubmitAdmin = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await fetch(' http://91.108.111.180:8000/Courses/create_admin/', {
+    const response = await fetch('  http://91.108.111.180:8000/Courses/create_admin/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1167,7 +1167,7 @@ const [criteriaList, setCriteriaList] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(' http://91.108.111.180:8000/Criteria/show_criteria/');
+        const response = await fetch('  http://91.108.111.180:8000/Criteria/show_criteria/');
         const data = await response.json();
         setCriteriaList(data);
       } catch (error) {
@@ -1187,7 +1187,7 @@ const [criteriaList, setCriteriaList] = useState([]);
     };
 
     try {
-      const response = await fetch(' http://91.108.111.180:8000/Criteria/save_evaluation_date/', {
+      const response = await fetch('  http://91.108.111.180:8000/Criteria/save_evaluation_date/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1213,7 +1213,7 @@ const [criteriaList, setCriteriaList] = useState([]);
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('http://91.108.111.180:8000/Criteria/get_evaluation_dates/', {
+      fetch(' http://91.108.111.180:8000/Criteria/get_evaluation_dates/', {
         credentials: 'include', // Include cookies in the request
         headers: {
           'X-CSRFToken': getCookie('csrftoken') // Include CSRF token in the request headers
@@ -1245,7 +1245,7 @@ const [criteriaList, setCriteriaList] = useState([]);
     if (index !== -1) {
       updatedDates[index].date_ended = currentDate;
 
-      fetch(' http://91.108.111.180:8000/Criteria/update_evaluation_date/', {
+      fetch('  http://91.108.111.180:8000/Criteria/update_evaluation_date/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1278,7 +1278,7 @@ const [criteriaList, setCriteriaList] = useState([]);
 
   useEffect(() => {
     // Fetch evaluation dates from Django backend
-    fetch('  http://91.108.111.180:8000/Criteria/get_evaluation_dates/')
+    fetch('   http://91.108.111.180:8000/Criteria/get_evaluation_dates/')
       .then(response => response.json())
       .then(data => {
         const currentDate = new Date();
@@ -2452,18 +2452,25 @@ type='submit'
   <div style={{backgroundColor:'white',position:'absolute',color:'black',padding:'1.5em',border:'black solid 2px',}}>
     <h3>Add Subjects for {newselectedFaculty.first_name} {newselectedFaculty.last_name}  {newselectedFaculty.id_number}</h3>
     <select name="year" id="year" onChange={handleYearChange}>
-      {/* Options for year */}
-      {years.map(year => (
-        <option key={year} value={year}>{year}</option>
-      ))}
-    </select>
-    <select name="semester" id="semester" onChange={handleSemesterChange}>
-      {/* Options for semester */}
-      {/* Replace the placeholders with actual semester options */}
-      <option value="1">Semester 1</option>
-      <option value="2">Semester 2</option>
-    </select>
-    <select name="subjects" id="subjects">
+  {/* Default option for year */}
+  <option value="" selected disabled>Select Year</option>
+  {/* Options for year */}
+  {years.map(year => (
+    <option key={year} value={year}>{year}</option>
+  ))}
+</select>
+
+<select name="semester" id="semester" onChange={handleSemesterChange}>
+  {/* Default option for semester */}
+  <option value="" selected disabled>Select Semester</option>
+  {/* Options for semester */}
+  <option value="1">Semester 1</option>
+  <option value="2">Semester 2</option>
+</select>
+
+<select name="subjects" id="subjects">
+  {/* Default option for subjects */}
+  <option value="" selected disabled>Select Subject</option>
   {/* Options for subjects */}
   {newsubject.map(subject => (
     <option key={subject} value={subject}>{subject}</option>
