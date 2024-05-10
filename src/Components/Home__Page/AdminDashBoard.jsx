@@ -81,7 +81,7 @@ export const AdminDashBoard = () => {
 
      if (IconName === 'evaluation'){
       navigate(`/Evaluation/${facultyId}`)
-      navigate(`/Evaluation/Results/${facultyId}`)
+     
 
       
     } else if (IconName === 'show'){
