@@ -32,6 +32,75 @@ export const Evaluation = () => {
     fetchFacultyInfo();
   }, [facultyId]);
 
+
+  const getCsrfToken = () => {
+    const name = 'csrftoken=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+  
+    for (let i = 0; i < cookieArray.length; i++) {
+      let cookie = cookieArray[i].trim();
+      if (cookie.indexOf(name) === 0) {
+        return cookie.substring(name.length, cookie.length);
+      }
+    }
+  
+    return null;
+  };
+  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState('');
+
+  const handleSemesterChange = (event) => {
+    setSelectedSemester(event.target.value);
+  };
+
+  const [newsubject, newsetSubjects] = useState([]);
+
+  const handleYearChange = (event) => {
+    setSelectedYear(event.target.value);
+  };
+  const [years, setYears] = useState([]);
+
+  useEffect(() => {
+    // Fetch years associated with selected faculty member when selectedFaculty changes
+    if (facultyId) {
+      const csrfToken = getCsrfToken(); // Assuming getCsrfToken() function retrieves the CSRF token
+      fetch(`  http://91.108.111.180:8000/Add_faculty/get_years/${facultyId}`, {
+        headers: {
+          'X-CSRFToken': csrfToken // Add CSRF token to headers
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          setYears(data.years);
+        })
+        .catch(error => console.error('Error fetching years:', error));
+    }
+  }, [facultyId]);
+
+
+
+  const fetchSubjects = () => {
+    if (facultyId && selectedYear && selectedSemester) {
+      fetch(`http://91.108.111.180:8000/Add_faculty/fetch_subjects/${facultyId}/${selectedYear}/${selectedSemester}`)
+        .then(response => response.json())
+        .then(data => {
+          newsetSubjects(data.subjects);
+          console.log('New subjects:', data.subjects);
+        })
+        .catch(error => console.error('Error fetching subjects:', error));
+    }
+  };
+  
+    // Fetch subjects whenever selectedFaculty, selectedYear, or selectedSemester changes
+    useEffect(() => {
+      fetchSubjects();
+  
+  
+    }, [facultyId, selectedYear, selectedSemester]);
+
+
+
   const [comment, setComment] = useState('');
 
   const handleCommentChange = (event) => {
@@ -354,6 +423,10 @@ export const Evaluation = () => {
 
   };
 
+
+
+
+
 return (
         <div>
           
@@ -366,10 +439,7 @@ return (
 <img src={prmsu__logo} alt="logo of Prmsu"/>
 </div> 
 
-<div className='search'>
- 
-  <input type="text" placeholder='Search ID' />
-</div>
+
 
 
 <div className='icon-menu'>
@@ -420,16 +490,11 @@ return (
      </span>
     <br />
 
-    {facultyInfo.subjects && (
-            <div className='SubjectList'>
-              <label htmlFor="subjects">Subjects:</label>
-              <select className='slctn-sbjcts' id="subjects" name="subjects">
-                {facultyInfo.subjects.map((subject, index) => (
-                  <option key={index} value={subject}>{subject}</option>
-                ))}
-              </select>
-              </div>
-          )}
+  
+
+          
+
+  
     </p>
     
     
@@ -438,9 +503,37 @@ return (
     </div>
     </>
       )}
+
     
   </div>
+  <form onSubmit={handleSaveEvaluation}>
+     <div style={{marginLeft:'6em',display: 'flex',alignItems: 'center',paddingLeft: '4em',outline:'none'}}>
 
+ <select style={{marginRight:'2em',height:'2.5em', borderRadius:'5px',outline:'none'}} name="year" id="year" onChange={handleYearChange}>
+  {/* Default option for year */}
+  <option value="" selected disabled>Select Year</option>
+  {/* Options for year */}
+  {years.map(year => (
+    <option key={year} value={year}>{year}</option>
+  ))}
+</select>
+              <select  style={{marginRight:'2em',height:'2.5em', borderRadius:'5px',outline:'none'}} name="semester" id="semester" onChange={handleSemesterChange}>
+  {/* Default option for semester */}
+  <option value="" selected disabled>Select Semester</option>
+  {/* Options for semester */}
+  <option value="1">Semester 1</option>
+  <option value="2">Semester 2</option>
+</select>
+
+<select  style={{height:'2.5em', borderRadius:'5px' ,outline:'none'}} name="subjects" id="subjects">
+  {/* Default option for subjects */}
+  <option value="" selected disabled>Select Subject</option>
+  {/* Options for subjects */}
+  {newsubject.map(subject => (
+    <option key={subject} value={subject}>{subject}</option>
+  ))}
+</select>
+</div> 
   <table className='custom-table'>
         <thead>
           <tr>
@@ -593,7 +686,7 @@ return (
 </tbody>
       </table>
       
-          <form onSubmit={handleSaveEvaluation}>
+         
             
       <div className='fdbck-sctn' >
       <textarea

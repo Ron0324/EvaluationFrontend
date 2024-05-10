@@ -169,10 +169,7 @@ const ToggleActive = (IconName,facultyId) =>{
 <img src={prmsu__logo} alt="logo of Prmsu"/>
 </div> 
 
-<div className='search'>
- 
-  <input type="text" placeholder='Search ID' />
-</div>
+
 
 <div className='icon-menu'>
   

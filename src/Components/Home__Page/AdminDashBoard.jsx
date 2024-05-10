@@ -53,6 +53,7 @@ export const AdminDashBoard = () => {
       evaluation: false,
       admin: false,
       evaluate: true,
+      show:false,
     });
    
     
@@ -73,11 +74,17 @@ export const AdminDashBoard = () => {
       evaluate: IconName === 'evaluate' ? !IconActive.evaluate : false,
       evaluation: IconName === 'evaluation' ? !IconActive.evaluation : false,
       admin: IconName === 'admin' ? !IconActive.admin : false,
+      show: IconName === 'show' ? !IconActive.show : false,
    
 
      });
 
      if (IconName === 'evaluation'){
+      navigate(`/Evaluation/${facultyId}`)
+      navigate(`/Evaluation/Results/${facultyId}`)
+
+      
+    } else if (IconName === 'show'){
       navigate(`/Evaluation/Results/${facultyId}`)
     }
 
@@ -173,7 +180,7 @@ export const AdminDashBoard = () => {
 
 
 const facultycontainer = {
- background:'#0a193a',maxHeight:'30em',
+ background:'#0a193a',maxHeight:'27em',
  overflow: 'auto',
 /* Hide scrollbar for WebKit browsers */
 scrollbarWidth: 'thin', /* Firefox */
@@ -1419,17 +1426,12 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
   <label htmlFor="">{faculty.first_name}</label>
 <label style={{marginLeft:'1em'}} htmlFor="">{faculty.last_name}</label>
   </div>
-  <label htmlFor="">{faculty.status}</label>
-<ul>
-{faculty.subjects.map(subject => (
-                <li key={subject.id}>{subject.Subname}</li>
-              ))}
-</ul>
+ 
 
 <button
       
       style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
-      onClick={()=>ToggleActive('evaluation', faculty.id)}
+      onClick={()=>ToggleActive('show', faculty.id)} 
       > Show Result</button>
       
   
@@ -1603,13 +1605,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 <label className='sr-nm' htmlFor="lastname">{faculty.last_name}</label>
   </div>
   <label htmlFor="">{faculty.status}</label>
-  <div><label htmlFor="">Subjects:</label></div>
-  
-<ul>
-{faculty.subjects.map(subject => (
-                <li key={subject.id}>{subject.Subname}</li>
-              ))}
-</ul>
+  <div>
 
 <button
       onClick={() => ToggleActive('evaluation', faculty.id)}
@@ -1628,7 +1624,9 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
       disabled={isDisabled}
     >
       Evaluate
-    </button>
+    </button></div>
+  
+
       
   
   </div>
@@ -1661,8 +1659,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
       
 
 
-      <input style={{outline:'none',marginLeft:'2em',borderTop:'black solid 2px',borderLeft:'black solid 2px',borderBottom:'2px solid #564c4cba',borderRight:'2px solid #564c4cba',height:'2em'}}
-       type="search" name="" id="" placeholder='Search'/>
+      
 
 
 <div style={containerStyles}>
@@ -1685,12 +1682,8 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 <label style={{marginLeft:'1em'}} htmlFor="">{faculty.last_name}</label>
   </div>
   <label htmlFor="">{faculty.status}</label>
-<ul>
-{faculty.subjects.map(subject => (
-                <li key={subject.id}>{subject.Subname}</li>
-              ))}
-</ul>
 
+<div>
 <button
 
       onClick={() => handleEditFacultySubject(faculty)}
@@ -1704,7 +1697,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
       style={{width: '8em',height:'2em',marginLeft:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
       
       > show subjects`</button>
-      
+      </div>
   
   </div>
 
@@ -1915,18 +1908,7 @@ style={{border:'none', borderBottom:"black 1.5px solid", outline:'none', padding
           >
             + Subject
           </button>
-          <input
-            value={searchSubjQuery}
-            onChange={(e) => setSearchSubjQuery(e.target.value)}
-            style={{
-              outline: 'none', marginLeft: '2em', borderTop: 'black solid 2px', borderLeft: 'black solid 2px',
-              borderBottom: '2px solid #564c4cba', borderRight: '2px solid #564c4cba', height: '2em'
-            }}
-            type="search"
-            name=""
-            id=""
-            placeholder='Search'
-          />
+          
           <table   style={{marginBottom:'2em', display: 'block', color: 'white', fontFamily: 'serif', backgroundColor: '#0a193a', maxHeight: '25em', overflowY: 'auto', maxWidth: '95em' }}
            className='custom-table'
           >
@@ -2048,8 +2030,7 @@ type='submit'
       >
 + Course
       </button >
-      <input style={{outline:'none',marginLeft:'2em',borderTop:'black solid 2px',borderLeft:'black solid 2px',borderBottom:'2px solid #564c4cba',borderRight:'2px solid #564c4cba',height:'2em'}}
-       type="search" name="" id="" placeholder='Search'/>
+     
    <table  style={{display:'block',color:'white', fontFamily:'serif',backgroundColor:'#0a193a',maxHeight: '70%', overflowY: 'auto',maxWidth: '95em'}}  className='custom-table'> 
        <thead>
         <tr>
@@ -2274,8 +2255,6 @@ type='submit'
       </button>
 
 
-      <input style={{outline:'none',marginLeft:'5em',borderTop:'black solid 2px',borderLeft:'black solid 2px',borderBottom:'2px solid #564c4cba',borderRight:'2px solid #564c4cba',height:'2em'}}
-       type="search" name="" id="" placeholder='Search'/>
 
 
 <table style={{display:'block',color:'white', fontFamily:'serif',backgroundColor:'#0a193a',maxHeight: '70%', overflowY: 'auto',width: '100%'}}  className='custom-table'> 
@@ -2391,8 +2370,7 @@ type='submit'
       </button>
 
 
-      <input style={{outline:'none',marginLeft:'5em',borderTop:'black solid 2px',borderLeft:'black solid 2px',borderBottom:'2px solid #564c4cba',borderRight:'2px solid #564c4cba',height:'2em'}}
-       type="search" name="" id="" placeholder='Search'/>
+    
 
 
 <table style={{display:'block',color:'white', fontFamily:'serif',backgroundColor:'#0a193a',maxHeight: '70%', overflowY: 'auto',width: '100%'}}  className='custom-table'> 
@@ -2450,7 +2428,7 @@ type='submit'
     
 {newselectedFaculty && (
   <div style={{backgroundColor:'white',position:'absolute',color:'black',padding:'1.5em',border:'black solid 2px',}}>
-    <h3>Add Subjects for {newselectedFaculty.first_name} {newselectedFaculty.last_name}  {newselectedFaculty.id_number}</h3>
+    <h3>Subjects of {newselectedFaculty.first_name} {newselectedFaculty.last_name}  {newselectedFaculty.id_number}</h3>
     <select name="year" id="year" onChange={handleYearChange}>
   {/* Default option for year */}
   <option value="" selected disabled>Select Year</option>

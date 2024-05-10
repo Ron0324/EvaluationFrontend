@@ -7,6 +7,12 @@ import {  useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import file from '../Assets/file.png';
 import home from '../Assets/home.png';
+import { Line } from 'react-chartjs-2';
+
+import { Chart, LinearScale, CategoryScale, LineController, LineElement, PointElement, Title } from 'chart.js'; // Import necessary components from Chart.js
+
+Chart.register(LinearScale, CategoryScale, LineController, LineElement, PointElement, Title); // Register components
+
 
 export const ResultPage = () => {
 
@@ -50,8 +56,43 @@ export const ResultPage = () => {
       });
   }, [facultyId]);
     
+    console.log(feedbackData);
     
-      
+    const polarityScore = feedbackData ? feedbackData.average_polarity : null;
+
+    const data = {
+      labels: ['Polarity Score'],
+      datasets: [
+        {
+          label: 'Polarity',
+          data: [polarityScore],
+          fill: true,
+          backgroundColor: 'rgba(75,192,192,0.2)',
+          borderColor: 'rgba(75,192,192,0.5)',
+          borderWidth: 10,
+        },
+      ],
+    };
+    
+    const options = {
+      scales: {
+        x: {
+          grid: {
+            color: 'rgba(0, 0, 0, 0)', // Hide vertical grid lines
+          },
+        },
+        y: {
+          type: 'linear',
+          ticks: {
+            
+            values: [-1, -0.8, -0.6, -0.4, 0, 0.4, 0.6, 0.8, 1], // Set the step size to 1 to display only -1, 0, and 1
+          },
+          grid: {
+            color: 'rgba(0, 0, 255, 0.1)', // Blue color with transparency for horizontal lines
+          },
+        },
+      },
+    };
         const navigate = useNavigate();
     
         const handleClickLogOut = () => {
@@ -223,6 +264,17 @@ style={{height:'100em'}}>
     </table>
     
  )}
+
+ <div style={{color:'white'}}>
+      {feedbackData ? (
+        <div>
+          <h2>Polarity Score: {polarityScore.toFixed(2)}</h2>
+         <Line data={data} options={options} style={{ width: '500px', height: '300px' }} />
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
  <h3>Total Rating: </h3>
                 <div className='smmry' >
                   
