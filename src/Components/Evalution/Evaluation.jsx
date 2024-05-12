@@ -333,7 +333,25 @@ export const Evaluation = () => {
     };
   };
 
+  const [showNewFaculty, setShowNewFaculty] = useState(false);
+  const [msg1, setmsg1] = useState(false);
+  const [msg2, setmsg2] = useState(false);
+  const [msg3, setmsg3] = useState(false);
+  const [msg4, setmsg4] = useState(false);
+  const [msg5, setmsg5] = useState(false);
+  const [msg6, setmsg6] = useState(false);
+  const [msg7, setmsg7] = useState(false);
+  const [msg8, setmsg8] = useState(false);
+  const [msg9, setmsg9] = useState(false);
 
+  const toggleNewFaculty =() =>{
+    setShowNewFaculty(!showNewFaculty);
+  }; 
+
+
+  const togglemsg1 =() =>{
+    setmsg1(!msg1);
+  }; 
 
   
   const [allCellsFilled, setAllCellsFilled] = useState(false);
@@ -363,7 +381,7 @@ export const Evaluation = () => {
       setShowPolicy(!showPolicy);
     } else {
       // If one or more criteria are not scaled, display a message
-      alert('Please scale all criteria before clicking "Done".');
+      setmsg1(!msg1);
     }
   };
   
@@ -431,7 +449,8 @@ return (
         <div>
           
 
-
+ 
+          
 
 <div className='top-header'>
 
@@ -506,6 +525,8 @@ return (
 
     
   </div>
+  
+
   <form onSubmit={handleSaveEvaluation}>
      <div style={{marginLeft:'6em',display: 'flex',alignItems: 'center',paddingLeft: '4em',outline:'none'}}>
 
@@ -716,6 +737,8 @@ return (
        >Done</button></div
        ></div>
 
+       
+
 
       <div className='plcy' style={{ display:  showPolicy? 'block' : 'none',overflow:'auto', position:'absolute', top:'50%', right:'50%', transform:'translate(50%, -60%)', background:'white', color: 'black', padding:'1em',maxHeight:'45em', maxWidth:'36em'}}>
        <label htmlFor=""> Name: <input placeholder='Optional' type="text" />
@@ -766,6 +789,11 @@ Optional identification details, if provided, will be stored securely, and acces
     </form>
 
 </div>
+<div className='smll-cntnr' id='newFaculty' style={{ display: msg1 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Please scale all criteria before clicking "Done". 
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg1}>Okay</button></div></div>
 
 <div ></div>
 
