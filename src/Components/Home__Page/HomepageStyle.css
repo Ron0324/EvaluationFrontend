@@ -709,11 +709,14 @@ border-radius: 5px;
 .smmry{
     width: 99%;
     color: #fff9f9;
-    height: 20%;
+    height: 15%;
     background: rgb(34 56 91);
     border-radius: 1em;
     padding: 0.5em;
     overflow: auto;
     font-family: sans-serif;
     font-style: oblique;
+}
+.canvas{
+    background-color: #6deded !important;
 }

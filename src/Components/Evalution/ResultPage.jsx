@@ -67,8 +67,8 @@ export const ResultPage = () => {
           label: 'Polarity',
           data: [polarityScore],
           fill: true,
-          backgroundColor: 'rgba(75,192,192,0.2)',
-          borderColor: 'rgba(75,192,192,0.5)',
+          backgroundColor: 'red',
+          borderColor: 'red',
           borderWidth: 10,
         },
       ],
@@ -78,17 +78,18 @@ export const ResultPage = () => {
       scales: {
         x: {
           grid: {
-            color: 'rgba(0, 0, 0, 0)', // Hide vertical grid lines
+            color: 'black', // Hide vertical grid lines
           },
         },
         y: {
           type: 'linear',
           ticks: {
             
-            values: [-1, -0.8, -0.6, -0.4, 0, 0.4, 0.6, 0.8, 1], // Set the step size to 1 to display only -1, 0, and 1
+            values: [-1,  -0.4, 0, 0.4, 1], 
+            
           },
           grid: {
-            color: 'rgba(0, 0, 255, 0.1)', // Blue color with transparency for horizontal lines
+            color: 'black', 
           },
         },
       },
@@ -199,7 +200,7 @@ return (
 <div className='mainview'>
 
 <div className='evltn-ctnr '
-style={{height:'100em'}}>
+style={{height:'150em'}}>
   <div className='evltn-hdr '>
   {facultyInfo && (
         <>
@@ -265,10 +266,18 @@ style={{height:'100em'}}>
     
  )}
 
- <div style={{color:'white'}}>
+ <div style={{color:'white',fontSize:'24px'}}>
+ 
       {feedbackData ? (
-        <div>
-          <h2>Polarity Score: {polarityScore.toFixed(2)}</h2>
+        <div style={{color:'black', background:'wheat', maxHeight:'55em', maxWidth:"55em", marginLeft:'1em'}}>
+          <div style={{display:'flex',flexDirection:'row'}}>
+         
+          <h5 style={{marginRight:'5em', marginLeft:'2em'}}> Positive Sentiment range from  0.3 above   </h5>
+          <h5 style={{marginRight:'5em'}}> Nuetral Sentiment range from -0.3 to 0.3  </h5>
+             <h5 >  Negative Sentiment range from -0.3 below  </h5>
+             </div>
+             <h5 style={{marginTop:'0', marginLeft:'2em'}} >Polarity Score: {polarityScore.toFixed(2)}</h5> 
+              
          <Line data={data} options={options} style={{ width: '500px', height: '300px' }} />
         </div>
       ) : (
@@ -285,7 +294,7 @@ style={{height:'100em'}}>
                   {feedbackData && feedbackData.sentiment !== "No evaluations found" && (
   <div>
     <p>
-      In summary, this faculty mostly receives {feedbackData.sentiment} feedbacks. <br /><br />
+    The average polarity score is  {polarityScore.toFixed(2)}, meaning this faculty receives a  {feedbackData.sentiment} sentiment value on his/her feedback. <br /><br />
       
       <span>
         {feedbackData.all_negative_phrases && feedbackData.all_negative_phrases.length > 0 && (
