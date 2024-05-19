@@ -5,6 +5,7 @@ import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg'
 
 import home from '../Assets/home.png';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -12,7 +13,53 @@ import { useNavigate } from 'react-router-dom';
 
 export const Homepage = () => {
   
- 
+  const location = useLocation();
+  const [studentInfo, setStudentInfo] = useState(null);
+
+  useEffect(() => {
+    // Function to parse query parameters from URL
+    const parseQueryParams = (queryString) => {
+      const params = {};
+      const query = queryString.substring(1);
+      const pairs = query.split('&');
+      pairs.forEach((pair) => {
+        const [key, value] = pair.split('=');
+        params[key] = decodeURIComponent(value);
+      });
+      return params;
+    };
+
+    // Parse query parameters from URL
+    const queryParams = parseQueryParams(location.search);
+
+    // Extract student information from query parameters
+    const {
+      id,
+      username,
+      id_number,
+      first_name,
+      last_name,
+      suffix,
+      course,
+      year_level,
+      // Add other fields if needed
+    } = queryParams;
+
+    // Set student information in state
+    setStudentInfo({
+      id,
+      username,
+      id_number,
+      first_name,
+      last_name,
+      suffix,
+      course,
+      year_level,
+      // Add other fields if needed
+    });
+
+    
+  }, [location.search]);
 
   const navigate = useNavigate();
 
@@ -48,7 +95,7 @@ const ToggleActive = (IconName,facultyId) =>{
 
  
    if (IconName === 'evaluation'){
-     navigate(`/Evaluation/${facultyId}`)
+    navigate(`/Evaluation/${facultyId}`, { state: { studentInfo } });
    }
    
 };

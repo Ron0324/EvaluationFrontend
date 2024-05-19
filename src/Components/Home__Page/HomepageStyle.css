@@ -720,3 +720,16 @@ border-radius: 5px;
 .canvas{
     background-color: #6deded !important;
 }
+.new_table th{
+    border: solid black 5px;
+    font-family: 'serif',
+}
+.new_table td{
+    border: solid black 5px;
+    font-family: 'serif',
+}
+.new_table{
+    border-collapse: collapse;
+    font-family: 'serif',
+
+}

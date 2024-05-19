@@ -128,7 +128,8 @@ export const AdminDashBoard = () => {
 
     const [showAddStudentDiv, setShowStudentDiv] = useState(false);
 
-    const toggleAddStudent = () => {
+    const toggleAddStudent = (e) => {
+      e.stopPropagation();
       setShowStudentDiv(!showAddStudentDiv);
 
     };
@@ -730,7 +731,7 @@ const [student_searchQuery, student_setSearchQuery] = useState('');
 
 const student_fetchData = useCallback(async () => {
   try {
-    const response = await fetch(`  http://91.108.111.180:8000/Courses/show_Students/?search=${student_searchQuery}`);
+    const response = await fetch(`   http://91.108.111.180:8000/Courses/show_Students/?search=${student_searchQuery}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -755,7 +756,8 @@ const filteredStudents = students.filter((student) =>
   student.first_name.toLowerCase().includes(student_searchQuery.toLowerCase()) ||
   student.last_name.toLowerCase().includes(student_searchQuery.toLowerCase()) ||
   student.suffix.toLowerCase().includes(student_searchQuery.toLowerCase()) ||
-  student.course.toLowerCase().includes(student_searchQuery.toLowerCase())
+  student.course.toLowerCase().includes(student_searchQuery.toLowerCase()) ||
+  student.year_level.lowercase().includes(student_searchQuery.toLowerCase())
 );
 
 
@@ -857,6 +859,7 @@ const filteredAdmins = admins.filter((admins) =>
   const hideSelectedStudent = () => {
     setSelectedStudent(null);
   };
+  
 
   const handleEditStudentClick = (student) => {
     setSelectedStudent(student);
@@ -1075,6 +1078,7 @@ const [studentFormData, setStudentFormData] = useState({
   last_name: '',
   suffix: '',
   course: '',
+  year_level: '',
   password: '',
   
   
@@ -1119,10 +1123,10 @@ const handleSubmitStudent = async (e) => {
       const data = await response.json();
       
       alert('New Student created');
-    } else {
-      
-      alert('Failed to create new Student');
-    }
+
+      const form = document.querySelector('form'); 
+      form.reset();
+    } 
   } catch (error) {
     console.error('Error creating student:', error);
     alert('Something went wrong creating new Student');
@@ -1163,7 +1167,7 @@ const handleSubmitAdmin = async (e) => {
       alert('Failed to create new Admin');
     }
   } catch (error) {
-    console.error('Error creating student:', error);
+    console.error('Error creating new Admin:', error);
     alert('Something went wrong creating new Admin');
   }
 };
@@ -1691,12 +1695,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
       
       > Add Subjects</button>
     
-<button
 
-      onClick={() => newhandleEditFacultySubject(faculty)}
-      style={{width: '8em',height:'2em',marginLeft:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
-      
-      > show subjects`</button>
       </div>
   
   </div>
@@ -2092,7 +2091,7 @@ type='submit'
 style={{borderLeft:"none", borderRight:'none', borderTop:'none', borderBottom:'1.5px solid black', padding: '4px',outline:'none'}}
 type="text"
 name="id_number"
-value={formData.id_number}
+
 onChange={handleInputChange} />
 
        <label
@@ -2103,7 +2102,7 @@ onChange={handleInputChange} />
 style={{border:'none', borderBottom:"black 1.5px solid", outline:'none',padding:'5px'}}
 type="text"
 name="first_name"
-value={formData.first_name}
+
 onChange={handleInputChange}>
 
 </input>
@@ -2135,13 +2134,31 @@ value={formData.last_name}
 name='suffix'
 style={{border:'none', borderBottom:"black 1.5px solid", outline:'none',padding:'5px'}}
 type="text"
-value={formData.suffix}
+
 onChange={handleInputChange}>
 
 </input>
 
+<div style={{marginTop:'2em'}}>
+<label htmlFor="Select year level:">Year Level:</label>
+<select
+        
+        value={studentFormData.year_level}
+        style={{ marginLeft: '2em' }}
+        id="year_level"
+        name='year_level'
+        onChange={handleInputChange}
+    >
+        <option value="">Select Year Level</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4rth Year">4rth Year</option>
+    </select>
 
-<label htmlFor="Select_Course:">Course:</label>
+       
+
+       <label htmlFor="Select_Course:">Course:</label>
 <select value={studentFormData.course}
         onChange={handleInputChange}
         name="course" 
@@ -2155,12 +2172,14 @@ onChange={handleInputChange}>
       ))}
        </select >
 
+       </div>
+
 </div>
 <hr />
 <div>
 <label htmlFor="Student Pass">Password: </label>
 <input
- value={formData.password}
+ 
       onChange={handleInputChange}
        name='password'
         type="password" />
@@ -2176,6 +2195,12 @@ onChange={handleInputChange}>
 style={{width: '5em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
 type='submit'
 > Save</button>
+
+<button
+              onClick={toggleAddStudent}
+              style={{marginLeft:'2em',width: '5em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}>
+                Done
+              </button>
 </div>
 </form>
 
@@ -2384,7 +2409,7 @@ type='submit'
             Name
           </th>
           <th style={{width:'42%'}}>
-           Course
+           Course and Year Level
           </th >
           <th style={{width:'20%'}}>
            Actions
@@ -2396,7 +2421,7 @@ type='submit'
           <tr key={student.id}>
              <td style={{width:'20%'}}>{student.id_number}</td>
             <td style={{width:'20%'}}>{student.first_name}  {student.last_name} {student.suffix} </td>
-            <td style={{width:'20%'}}>{student.course}</td>
+            <td style={{width:'20%'}}>{student.course}-{student.year_level}</td>
             <td style={{width:'20%'}}>
 
 <div style={{display:"flex",flexDirection:'row'}}>
@@ -2426,36 +2451,7 @@ type='submit'
 
 
     
-{newselectedFaculty && (
-  <div style={{backgroundColor:'white',position:'absolute',color:'black',padding:'1.5em',border:'black solid 2px',}}>
-    <h3>Subjects of {newselectedFaculty.first_name} {newselectedFaculty.last_name}  {newselectedFaculty.id_number}</h3>
-    <select name="year" id="year" onChange={handleYearChange}>
-  {/* Default option for year */}
-  <option value="" selected disabled>Select Year</option>
-  {/* Options for year */}
-  {years.map(year => (
-    <option key={year} value={year}>{year}</option>
-  ))}
-</select>
 
-<select name="semester" id="semester" onChange={handleSemesterChange}>
-  {/* Default option for semester */}
-  <option value="" selected disabled>Select Semester</option>
-  {/* Options for semester */}
-  <option value="1">Semester 1</option>
-  <option value="2">Semester 2</option>
-</select>
-
-<select name="subjects" id="subjects">
-  {/* Default option for subjects */}
-  <option value="" selected disabled>Select Subject</option>
-  {/* Options for subjects */}
-  {newsubject.map(subject => (
-    <option key={subject} value={subject}>{subject}</option>
-  ))}
-</select>
-  </div>
-)}
 
 
     {selectedFaculty&& (
@@ -2554,7 +2550,7 @@ type='submit'
 
     {selectedStudent && (
         <div style={{backgroundColor:'white',position:'absolute',color:'black',padding:'1.5em',border:'black solid 2px',}}>
-          <h3>Selected Admin</h3>
+          <h3>Selected Student</h3>
           <form onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="id"> Id NUmber 
             <input
@@ -2604,6 +2600,23 @@ type='submit'
 />
 
             </label>
+
+
+            <select
+        
+        
+        style={{ marginLeft: '2em' }}
+        id="year_level"
+        name='year_level'
+        
+        onChange={(e) => setSelectedStudent({ ...selectedStudent, year_level: e.target.value })}
+    >
+        <option value="">Select Year Level</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4rth Year">4rth Year</option>
+    </select>
             </div>
 
 

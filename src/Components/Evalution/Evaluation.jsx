@@ -7,11 +7,24 @@ import {  useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import file from '../Assets/file.png';
 import home from '../Assets/home.png';
+import { useLocation } from 'react-router-dom';
 
 
 
 export const Evaluation = () => {
+  const location = useLocation();
+ 
+  const studentInfo = location.state?.studentInfo;
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!studentInfo) {
+      navigate('/'); // Redirect to home page if studentInfo is not available
+    }
+  }, [studentInfo, navigate]);
+  
+ 
+ 
 
   const { facultyId } = useParams();
   const [facultyInfo, setFacultyInfo] = useState(null);
@@ -49,10 +62,14 @@ export const Evaluation = () => {
   };
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedSemester, setSelectedSemester] = useState('');
+  const [selectedSub, setSelectedSub] = useState("");
 
   const handleSemesterChange = (event) => {
     setSelectedSemester(event.target.value);
   };
+  const handleSubjectChange = (e) => {
+    setSelectedSub(e.target.value);
+};
 
   const [newsubject, newsetSubjects] = useState([]);
 
@@ -108,7 +125,7 @@ export const Evaluation = () => {
     setComment(newComment);
   };
 
-    const navigate = useNavigate();
+   
 
     const handleClickLogOut = () => {
      // Navigate to LogIn page route when the Logout is clicked
@@ -135,7 +152,7 @@ export const Evaluation = () => {
    });
  
   if (IconName === 'home'){
-   navigate('/homepage');
+    navigate(-1);
      }
      
  };
@@ -352,6 +369,13 @@ export const Evaluation = () => {
   const togglemsg1 =() =>{
     setmsg1(!msg1);
   }; 
+  const togglemsg2 =() =>{
+    setmsg2(!msg2);
+  }; 
+  const togglemsg3 =() =>{
+    setmsg3(!msg3);
+  }; 
+
 
   
   const [allCellsFilled, setAllCellsFilled] = useState(false);
@@ -385,45 +409,74 @@ export const Evaluation = () => {
     }
   };
   
-  
+  const studentId = studentInfo.id;
+  const year_level = studentInfo.year_level.replace('+', ' ');
+  const  student_id_number = studentInfo.id_number;
+  const course = studentInfo.course
+ 
+ 
+
   const handleSaveEvaluation = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     try {
-      const evaluationData = {
-        evaluations_data: [
-          {
-            criteria_A: averageA,
-            criteria_B: averageB,
-            criteria_C: averageC,
-            criteria_D: averageD,
-            total_rate: totalRatings,
-            feedback: comment,
+        const evaluationData = {
+            evaluations_data: [
+                {
+                    student_id: studentId,
+                    student_id_number:student_id_number,
+                    semester_choice: selectedSemester,
+                    year: selectedYear,
+                    course:course,
+                    year_level: year_level,
+                    subject_id: selectedSub,
+                    criteria_A: averageA,
+                    criteria_B: averageB,
+                    criteria_C: averageC,
+                    criteria_D: averageD,
+                    total_rate: totalRatings,
+                    feedback: comment,
+                }
+            ]
+        };
+
+        const response = await fetch(`http://91.108.111.180:8000/Add_faculty/save-evaluation/${facultyId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(evaluationData)
+        });
+
+        const responseData = await response.json();
+
+        if (response.ok) {
+            console.log(responseData.message); 
+            toggleDone()
+        } else {
+            // Check if the response contains an error related to duplicate evaluation
+            if (responseData.error.includes('already evaluated')) {
+                console.error(responseData.error); setmsg2(!msg2);
+                togglePolicy()
+            }
+
+            else if (responseData.error.includes('maximum limit of 30 evaluators has been reached')) {
+              console.error(responseData.error); setmsg3(!msg3);
+              togglePolicy()
           }
-        ]
-      };
-  
-      const response = await fetch(`http://91.108.111.180:8000/Add_faculty/save-evaluation/${facultyId}/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(evaluationData)
-      });
-  
-      if (!response.ok) {
-        throw new Error('Evaluation failed.');
-      }
-  
-      const responseData = await response.json();
-      console.log(responseData.message); // Log success message
+            
+            else {
+                throw new Error('Evaluation failed.'); // Throw other errors
+            }
+        }
     } catch (error) {
-      console.error('Error saving evaluation:', error);
+        console.error('Error saving evaluation:', error);
     }
-  };
+};
+
   
   
-  
-  
+
+
 
 
   const [showSuccess, setShowSuccess] = useState(false);
@@ -437,12 +490,14 @@ export const Evaluation = () => {
   
   const toggleUnDone = () => {
     setShowSuccess(!showSuccess);
-    navigate('/homepage');
+       navigate(-1);
 
   };
 
 
-
+  if (!studentInfo) {
+    return null; // Optionally render nothing while redirecting
+  }
 
 
 return (
@@ -530,6 +585,7 @@ return (
   <form onSubmit={handleSaveEvaluation}>
      <div style={{marginLeft:'6em',display: 'flex',alignItems: 'center',paddingLeft: '4em',outline:'none'}}>
 
+
  <select style={{marginRight:'2em',height:'2.5em', borderRadius:'5px',outline:'none'}} name="year" id="year" onChange={handleYearChange}>
   {/* Default option for year */}
   <option value="" selected disabled>Select Year</option>
@@ -546,12 +602,12 @@ return (
   <option value="2">Semester 2</option>
 </select>
 
-<select  style={{height:'2.5em', borderRadius:'5px' ,outline:'none'}} name="subjects" id="subjects">
+<select  style={{height:'2.5em', borderRadius:'5px' ,outline:'none'}} name="subjects" id="subjects" onChange={handleSubjectChange}>
   {/* Default option for subjects */}
   <option value="" selected disabled>Select Subject</option>
   {/* Options for subjects */}
   {newsubject.map(subject => (
-    <option key={subject} value={subject}>{subject}</option>
+    <option key={subject.id} value={subject.id}>{subject.name}</option>
   ))}
 </select>
 </div> 
@@ -776,7 +832,7 @@ Optional identification details, if provided, will be stored securely, and acces
         <button 
         type='submit'
          style={{width: '5em',height:'1.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginRight:'1em', marginTop:'1em' }}
-        onClick={toggleDone}>Submit</button>
+         >Submit</button>
 
         <button
         type='button'
@@ -794,6 +850,19 @@ Optional identification details, if provided, will be stored securely, and acces
     <button 
      style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
     onClick={togglemsg1}>Okay</button></div></div>
+
+    <div className='smll-cntnr' id='newFaculty' style={{ display: msg2 ? 'flex' : 'none',fontFamily:'-moz-initial',fontWeight:'bold',flexDirection:'column',textAlign:'center'}}> <span>An evaluation for this subject has already been completed.</span> <span> Please choose another Subject</span>
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg2}>Okay</button></div></div>
+
+
+<div className='smll-cntnr' id='newFaculty' style={{ display: msg3 ? 'flex' : 'none',fontFamily:'-moz-initial',fontWeight:'bold',flexDirection:'column',textAlign:'center'}}> <span>The maximum evaluation for this Subject has been reached.</span> <span> Please choose another Subject or Academic year</span>
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg3}>Okay</button></div></div>
 
 <div ></div>
 
