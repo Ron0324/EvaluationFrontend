@@ -865,7 +865,7 @@ onClick={togglemsg1}>Generate PDF</button>
           <div style={{display:'flex',flexDirection:'row'}}>
          
           <h5 style={{marginRight:'5em', marginLeft:'2em'}}> Positive Sentiment range from  0.3 above   </h5>
-          <h5 style={{marginRight:'5em'}}> Nuetral Sentiment range from -0.3 to 0.3  </h5>
+          <h5 style={{marginRight:'5em'}}> Nuetral Sentiment range from -0.15 to 0.15  </h5>
              <h5 >  Negative Sentiment range from -0.3 below  </h5>
              </div>
              <h5 style={{marginTop:'0', marginLeft:'2em'}} >Polarity Score: {polarityScore.toFixed(2)}</h5> 
