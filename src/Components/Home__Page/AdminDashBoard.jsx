@@ -1373,12 +1373,13 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 </h3>
 
 
-
+{/*
 <h3 className={`admn-slctn ${IconActive.evaluationList? 'active':'inactive'}`} onClick={()=>ToggleActive('evaluationList')}
  style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em', borderBottom:'1px solid #a39d9d'  } }>
   Evaluation List
 
 </h3>
+*/}
 <h3 className={`admn-slctn ${IconActive.evaluationForm? 'active':'inactive'}`} onClick={()=>ToggleActive('evaluationFrom')}
  style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em', borderBottom:'1px solid #a39d9d'  } }>
   Criteria
