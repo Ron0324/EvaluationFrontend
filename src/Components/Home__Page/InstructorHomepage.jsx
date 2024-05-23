@@ -222,13 +222,9 @@ export const InstructorHomepage = () => {
         <label className='sr-nm' htmlFor="lastname">{faculty.last_name}</label>
           </div>
           <label htmlFor="">{faculty.status}</label>
-          <div><label htmlFor="">Subjects:</label></div>
           
-        <ul>
-        {faculty.subjects.map(subject => (
-                        <li key={subject.id}>{subject.Subname}</li>
-                      ))}
-        </ul>
+          
+        
         
         <button
       

@@ -233,7 +233,7 @@ export const LogInForm = () => {
           setmsg8(!msg8);
         }
       } catch (error) {
-        alert('Error during authentication:');
+        
         setmsg9(!msg9);
       }
     } else {

@@ -293,6 +293,148 @@ const getCsrfToken = () => {
   return null;
 };
 
+const [msg1, setmsg1] = useState(false);
+  const [msg2, setmsg2] = useState(false);
+  const [msg3, setmsg3] = useState(false);
+  const [msg4, setmsg4] = useState(false);
+  const [msg5, setmsg5] = useState(false);
+  const [msg6, setmsg6] = useState(false);
+  const [msg7, setmsg7] = useState(false);
+  const [msg8, setmsg8] = useState(false);
+  const [msg9, setmsg9] = useState(false);
+  const [msg10, setmsg10] = useState(false);
+  const [msg11, setmsg11] = useState(false);
+  const [msg12, setmsg12] = useState(false);
+  const [msg13, setmsg13] = useState(false);
+  const [msg14, setmsg14] = useState(false);
+  const [msg15, setmsg15] = useState(false);
+  const [msg16, setmsg16] = useState(false);
+  const [msg17, setmsg17] = useState(false);
+  const [msg18, setmsg18] = useState(false);
+  const [msg19, setmsg19] = useState(false);
+  const [msg20, setmsg20] = useState(false);
+  const [msg21, setmsg21] = useState(false);
+  const [msg22, setmsg22] = useState(false);
+  const [msg23, setmsg23] = useState(false);
+  const [msg24, setmsg24] = useState(false);
+  const [msg25, setmsg25] = useState(false);
+  const [msg26, setmsg26] = useState(false);
+  const [msg27, setmsg27] = useState(false);
+  const [msg28, setmsg28] = useState(false);
+  const [msg29, setmsg29] = useState(false);
+
+
+
+
+  const togglemsg1 =() =>{
+    setmsg1(!msg1);
+  }; 
+  const togglemsg2 =() =>{
+    setmsg2(!msg2);
+  }; 
+  const togglemsg3 =() =>{
+    setmsg3(!msg3);
+  }; 
+  const togglemsg4 =() =>{
+    setmsg4(!msg4);
+  }; 
+  const togglemsg5 =() =>{
+    setmsg5(!msg5);
+  }; 
+  const togglemsg6 =() =>{
+    setmsg6(!msg6);
+  }; 
+  const togglemsg7 =() =>{
+    setmsg7(!msg7);
+  }; 
+  const togglemsg8 =() =>{
+    setmsg8(!msg8);
+  }; 
+  const togglemsg9 =() =>{
+    setmsg9(!msg9);
+  }; 
+  const togglemsg10 =() =>{
+    setmsg10(!msg10);
+  }; 
+
+  const togglemsg11 =() =>{
+    setmsg11(!msg11);
+  }; 
+
+  const togglemsg12 =() =>{
+    setmsg12(!msg12);
+  }; 
+
+
+  const togglemsg13 =() =>{
+    setmsg13(!msg13);
+  }; 
+
+
+  const togglemsg14 =() =>{
+    setmsg14(!msg14);
+  }; 
+
+
+  const togglemsg15 =() =>{
+    setmsg15(!msg15);
+  }; 
+
+
+  const togglemsg16 =() =>{
+    setmsg16(!msg16);
+  }; 
+
+
+  const togglemsg17 =() =>{
+    setmsg17(!msg17);
+  }; 
+
+
+  const togglemsg18 =() =>{
+    setmsg18(!msg18);
+  }; 
+
+
+  const togglemsg19 =() =>{
+    setmsg19(!msg19);
+  }; 
+
+  const togglemsg20 =() =>{
+    setmsg20(!msg20);
+  }; 
+
+
+  const togglemsg21 =() =>{
+    setmsg21(!msg21);
+  }; 
+  const togglemsg22 =() =>{
+    setmsg22(!msg22);
+  }; 
+  const togglemsg23 =() =>{
+    setmsg23(!msg23);
+  }; 
+  const togglemsg24 =() =>{
+    setmsg24(!msg24);
+  }; 
+  const togglemsg25 =() =>{
+    setmsg25(!msg25);
+  }; 
+  const togglemsg26 =() =>{
+    setmsg26(!msg26);
+  }; 
+  const togglemsg27 =() =>{
+    setmsg27(!msg27);
+  }; 
+  const togglemsg28 =() =>{
+    setmsg28(!msg28);
+  }; 
+  const togglemsg29 =() =>{
+    setmsg29(!msg29);
+  }; 
+
+
+
 const handleSelectDepartment = (departmentDescription) => {
   setSelectedDepartmentId(departmentDescription);
 };
@@ -302,7 +444,8 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   if (!formData.CodeName || !formData.Descriptions) {
-    alert('Code Name and Description are required.');
+   
+    setmsg1(!msg1);
   } else {
     try {
       const csrfToken = getCsrfToken();
@@ -321,13 +464,16 @@ const handleSubmit = async (e) => {
 
       if (data.message === 'Duplicate entry. Department not saved.') {
         // Handle duplicate entry error
-        alert('Duplicate entry. Department already exists.');
+   
+        setmsg2(!msg2);
       } else if (data.message === 'CodeName is required') {
         // Handle CodeName required error
-        alert('CodeName is required. Please provide a valid CodeName.');
+      
+        setmsg3(!msg3);
       } else {
         // Handle success, such as showing a success message or redirecting
-        alert('Department saved successfully');
+    
+        setmsg4(!msg4);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -347,7 +493,8 @@ const handleSubmit = async (e) => {
       }
 
       // Handle errors, such as displaying an error message
-      alert('Error saving department. Please try again.');
+  
+      setmsg5(!msg5);
     }
   }
 };
@@ -414,12 +561,14 @@ const handleAddSubject = async (departmentId) => {
 
       const data = await response.json();
       console.log(data.message);
-      alert('Subjects saved successfully');
+    
+      setmsg6(!msg6);
       
       
     } catch (error) {
       console.error('Error adding subjects:', error);
-      alert('Failed to save subjects. Please try again.');
+    
+      setmsg7(!msg7);
      
     }
   };
@@ -613,7 +762,9 @@ const newhandleSubmit = async (e) => {
   e.preventDefault();
 
   if (!imageChanged) {
-    alert('Please select a new image or change the default image before saving.');
+    setShowNewFaculty(!showNewFaculty);
+  
+    setmsg8(!msg8);
     return;
   }
 
@@ -629,7 +780,7 @@ const newhandleSubmit = async (e) => {
     formData.append('password', newformData.password);
     formData.append('status', newformData.status);
     formData.append('selected_image', newformData.selected_image);
-    const response = await fetch(' http://91.108.111.180//Add_faculty/save_faculty/', {
+    const response = await fetch(' http://91.108.111.180:8000/Add_faculty/save_faculty/', {
       method: 'POST',
       headers: {
         'X-CSRFToken': getCsrfToken(),
@@ -641,7 +792,9 @@ const newhandleSubmit = async (e) => {
     const data = await response.json();
 
     if (response.status === 201) {
-      alert(data.message);
+      setShowNewFaculty(!showNewFaculty);
+     
+      setmsg9(!msg9);
       // Reset form and table data if faculty data is saved successfully
       newsetFormData({
         id_number: '',
@@ -654,11 +807,15 @@ const newhandleSubmit = async (e) => {
       });
       
     } else {
-      alert('Error saving faculty data.');
+      setShowNewFaculty(!showNewFaculty);
+      
+      setmsg10(!msg10);
     }
   } catch (error) {
+    setShowNewFaculty(!showNewFaculty);
     console.error('Error:', error);
-    alert('An error occurred while saving faculty data.');
+  
+    setmsg11(!msg11);
   }
 };
 
@@ -676,14 +833,17 @@ const handleDelete = () => {
       })
       .then(response => {
           if (response.ok) {
-              alert('All faculty records deleted successfully');
+          
+              setmsg12(!msg12);
           } else {
-              alert('Error deleting faculty records');
+             
+              setmsg13(!msg13);
           }
       })
       .catch(error => {
           console.error('Error:', error);
-          alert('An error occurred while deleting faculty records');
+      
+          setmsg14(!msg14);
       });
   }
 };
@@ -715,7 +875,8 @@ const Course_Submit = async (e) => {
   e.preventDefault();
 
   if (!Course_formData.course_name || !Course_formData.description || !Course_formData.department) {
-    alert('Course name, description, and department are required.');
+  
+    setmsg15(!msg15);
   } else {
     try {
       const csrfToken = getCsrfToken();
@@ -740,7 +901,8 @@ const Course_Submit = async (e) => {
         setError('Course name is required. Please provide a valid Course name.');
       } else {
         // Handle success, such as showing a success message or redirecting
-        alert('Course saved successfully');
+       
+        setmsg16(!msg16);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -760,7 +922,8 @@ const Course_Submit = async (e) => {
       }
 
       // Handle errors, such as displaying an error message
-      alert('Error saving course. Please try again.');
+  
+      setmsg17(!msg17);
     }
   }
 };
@@ -812,14 +975,17 @@ const updateAdmin = async () => {
     });
 
     if (response.ok) {
-      alert('Admin information updated successfully');
+   
+      setmsg18(!msg18);
       // Optionally, you can reload the page or perform any other actions upon successful update
     } else {
-      alert('Failed to update admin information');
+     
+      setmsg19(!msg19);
     }
   } catch (error) {
     console.error('Error updating admin information:', error);
-    alert('Error updating admin information');
+  
+    setmsg20(!msg20);
   }
 };
 const handleDeleteClick = async (adminId) => {
@@ -832,15 +998,18 @@ const handleDeleteClick = async (adminId) => {
       });
 
       if (response.ok) {
-        alert('Admin deleted successfully');
+       
+        setmsg21(!msg21);
         // Optionally, you can perform any additional actions upon successful deletion
       } else {
         const errorMessage = await response.text();
-        alert(`Failed to delete admin: ${errorMessage}`);
+    
+        setmsg22(!msg22);
       }
     } catch (error) {
       console.error('Error deleting admin:', error);
-      alert('Error deleting admin');
+     
+      setmsg23(!msg23);
     }
   }
 };
@@ -1159,15 +1328,17 @@ const handleSubmitStudent = async (e) => {
 
     if (response.ok) {
       const data = await response.json();
-      
-      alert('New Student created');
+      setShowStudentDiv(!showAddStudentDiv);
+    
+      setmsg24(!msg24);
 
       const form = document.querySelector('form'); 
       form.reset();
     } 
   } catch (error) {
     console.error('Error creating student:', error);
-    alert('Something went wrong creating new Student');
+   
+    setmsg25(!msg25);
   }
 };
 
@@ -1199,14 +1370,17 @@ const handleSubmitAdmin = async (e) => {
     if (response.ok) {
       const data = await response.json();
       
-      alert('New Admin created');
+    
+      setmsg26(!msg26);
     } else {
       
-      alert('Failed to create new Admin');
+     
+      setmsg27(!msg27);
     }
   } catch (error) {
     console.error('Error creating new Admin:', error);
-    alert('Something went wrong creating new Admin');
+
+    setmsg28(!msg28);
   }
 };
 
@@ -1311,7 +1485,8 @@ const [criteriaList, setCriteriaList] = useState([]);
         })
         .then(data => {
           setEvaluationDates(updatedDates);
-          alert('Successfully ended evaluation.');
+        
+          setmsg29(!msg29);
         })
         .catch(error => {
           console.error('Error updating evaluation date:', error);
@@ -1489,6 +1664,222 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
    
     </div>
 
+
+    <div className='smll-cntnr'  style={{ display: msg1 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Code Name and Description are required.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg1}>Okay</button></div></div>
+
+<div className='smll-cntnr'  style={{ display: msg2 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Duplicate entry. Department already exists.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg2}>Okay</button></div></div>
+
+<div className='smll-cntnr'  style={{ display: msg3 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> CodeName is required. Please provide a valid CodeName.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg3}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg4 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Department saved successfully
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg4}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg5 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Error saving department. Please try again.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg5}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg6 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}>Subjects saved successfully
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg6}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg7 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Failed to save subjects. Please try again.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg7}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg8 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}>Please select a new image or change the default image before saving.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg8}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg9 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}>Faculty data saved successfully
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg9}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg10 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Error saving faculty data.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg10}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg11 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}>An error occurred while saving faculty data.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg11}>Okay</button></div></div>
+
+<div className='smll-cntnr'  style={{ display: msg12 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> All faculty records deleted successfully
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg12}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg13 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Error deleting faculty records
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg13}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg14 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}>An error occurred while deleting faculty records
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg14}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg15 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Course name, description, and department are required.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg15}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg16 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Course saved successfully'
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg16}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg17 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Error saving course. Please try again.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg17}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg18 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Admin information updated successfully
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg18}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg19 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Failed to update admin information
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg19}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg20 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Error updating admin information
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg20}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg21 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Failed to delete admin
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg21}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg22 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Error deleting admin
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg22}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg23 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> New Student created
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg23}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg24 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Something went wrong creating new Student
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg24}>Okay</button></div></div>
+
+
+<div className='smll-cntnr'  style={{ display: msg25 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> New Admin created
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg25}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg26 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Failed to create new Admin
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg26}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg27 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}>Something went wrong creating new Admin
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg27}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg28 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Successfully ended evaluation.
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg28}>Okay</button></div></div>
+
+
+
+<div className='smll-cntnr'  style={{ display: msg29 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Successfully ended evaluation. 
+  <div style={{marginTop:'1em'}}>
+    <button 
+     style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
+    onClick={togglemsg29}>Okay</button></div></div>
+
     <div className='smll-cntnr' id='newFaculty' style={{ display: showNewFaculty ? 'block' : 'none' }}>
 
 
@@ -1621,6 +2012,15 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 
 
 </div>   
+
+
+
+
+
+
+
+
+    
 
 
 <div className='fclty-view' 
@@ -2233,6 +2633,7 @@ onChange={handleInputChange}>
 <button
 style={{width: '5em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
 type='submit'
+
 > Save</button>
 
 <button
