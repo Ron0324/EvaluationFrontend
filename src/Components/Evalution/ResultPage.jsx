@@ -173,6 +173,8 @@ export const ResultPage = () => {
         };
 
 
+const percentage = averageRating*100/5
+
 
         const [years, setYears] = useState([]);
       
@@ -349,7 +351,7 @@ export const ResultPage = () => {
  
 
   
-
+console.log(facultyScore,evaluations)
 
 
     
@@ -714,7 +716,7 @@ style={{width: '7em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0
 </div>
 <div>
 
-  <span style={{fontWeight:'bold',fontSize:'55px',width:'36.5em'}}  >Ratings: {formatAverageRating(averageRating)}</span>
+  <span style={{fontWeight:'bold',fontSize:'55px',width:'36.5em'}}  >Ratings: {formatAverageRating(averageRating)} ( {formatAverageRating(percentage)}%) </span>
 </div>
 </div>
 
@@ -846,7 +848,7 @@ onClick={togglemsg1}>Generate PDF</button>
                       <td>{evaluation.criteria_C}</td>
                       <td>{evaluation.criteria_D}</td>
                       <td>{evaluation.total_rate}</td>
-                      <td> {evaluation.student_id_number} - {evaluation.course}  </td>
+                      <td> <td> {evaluation.admin_id_number }  {evaluation.student_id_number} - {evaluation.course}   </td>  </td>
                       <td style={{display:'block',maxHeight:'4em',overflowY: 'auto'}}>{evaluation.feedback}</td>
                     </tr>
                   ))}
@@ -876,7 +878,7 @@ onClick={togglemsg1}>Generate PDF</button>
         <p>Loading...</p>
       )}
     </div>
- <h3>Total Rating: {formatAverageRating(averageRating)} </h3>
+ <h3>Total Rating: {formatAverageRating(averageRating)} ( {formatAverageRating(percentage)}%)  </h3>
                 <div className='smmry' >
                   
                   

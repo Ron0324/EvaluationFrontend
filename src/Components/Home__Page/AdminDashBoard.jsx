@@ -4,11 +4,49 @@ import prmsu__logo from '../Assets/PrmsuLogo.png';
 import dflt_prfl_img from '../Assets/dflt_prfl_img.jpeg';
 import { useNavigate } from 'react-router-dom';
 import profile from '../Assets/profile.jpg'
-
+import { useLocation } from 'react-router-dom';
 
 export const AdminDashBoard = () => {
 
+  const location = useLocation();
+  const [adminInfo, setSAdminInfo] = useState(null);
 
+  useEffect(() => {
+    // Function to parse query parameters from URL
+    const parseQueryParams = (queryString) => {
+      const params = {};
+      const query = queryString.substring(1);
+      const pairs = query.split('&');
+      pairs.forEach((pair) => {
+        const [key, value] = pair.split('=');
+        params[key] = decodeURIComponent(value);
+      });
+      return params;
+    };
+
+    // Parse query parameters from URL
+    const queryParams = parseQueryParams(location.search);
+
+    // Extract student information from query parameters
+    const {
+      id,
+      id_number,
+      full_name,
+    
+      // Add other fields if needed
+    } = queryParams;
+
+    // Set student information in state
+    setSAdminInfo({
+      id,
+      id_number,
+      full_name,
+      // Add other fields if needed
+    });
+
+    
+  }, [location.search]);
+  console.log(adminInfo)
  
 
   const [profileImage, setProfileImage] = useState(dflt_prfl_img);
@@ -80,7 +118,7 @@ export const AdminDashBoard = () => {
      });
 
      if (IconName === 'evaluation'){
-      navigate(`/Evaluation/${facultyId}`)
+      navigate(`/admin-evaluation/${facultyId}`, { state: { adminInfo } })
      
 
       

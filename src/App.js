@@ -12,8 +12,10 @@ import { Evaluation } from './Components/Evalution/Evaluation';
 import { ResultPage } from './Components/Evalution/ResultPage';
 import { InstructorHomepage } from './Components/Home__Page/InstructorHomepage';
 import { NewResultPage } from './Components/Evalution/NewResultPage';
+import { New_evaluation } from './Components/Evalution/New_evaluation';
 import { AuthProvider } from './Components/AuthContext';
 import ProtectedRoute from './Components/ProtectedRoute';
+
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
           <Route path="/Evaluation/Results/:facultyId" element={<ResultPage />} />
           <Route path="/Evaluation/Faculty-Results/:facultyId" element={<NewResultPage />} />
           <Route path="/Instructors-Homepage" element={<InstructorHomepage />} />
+          <Route path="/admin-evaluation/:facultyId" element={<New_evaluation />} />
+        
+          
         </Routes>
       </Router>
     </AuthProvider>

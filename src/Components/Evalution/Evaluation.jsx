@@ -17,12 +17,24 @@ export const Evaluation = () => {
   const studentInfo = location.state?.studentInfo;
   const navigate = useNavigate();
 
+  const [studentId, setStudentId] = useState(null);
+  const [year_level, setYearLevel] = useState('');
+  const [ student_id_number, setStudentIdNumber] = useState('');
+  const [course, setCourse] = useState('');
+
+
   useEffect(() => {
     if (!studentInfo) {
       navigate('/'); // Redirect to home page if studentInfo is not available
+    } else {
+      // Set state values if studentInfo is defined
+      setStudentId(studentInfo.id);
+      setYearLevel(studentInfo.year_level.replace('+', ' '));
+      setStudentIdNumber(studentInfo.id_number);
+      setCourse(studentInfo.course);
     }
   }, [studentInfo, navigate]);
-  
+
  
  
 
@@ -409,10 +421,9 @@ export const Evaluation = () => {
     }
   };
   
-  const studentId = studentInfo.id;
-  const year_level = studentInfo.year_level.replace('+', ' ');
-  const  student_id_number = studentInfo.id_number;
-  const course = studentInfo.course
+
+  
+ 
  
  
 
