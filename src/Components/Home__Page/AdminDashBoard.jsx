@@ -1835,7 +1835,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 
 
 
-<div className='smll-cntnr'  style={{ display: msg24 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> Something went wrong creating new Student
+<div className='smll-cntnr'  style={{ display: msg24 ? 'block' : 'none',fontFamily:'-moz-initial',fontWeight:'bold' }}> New Student created
   <div style={{marginTop:'1em'}}>
     <button 
      style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
