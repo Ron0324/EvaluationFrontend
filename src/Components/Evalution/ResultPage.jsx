@@ -78,12 +78,12 @@ export const ResultPage = () => {
        
        });
      
-      if (IconName === 'home'){
-       navigate('/Admin-DashBoard');
-         }
-         
-     };
-    
+      
+     if (IconName === 'home'){
+      navigate(-1);
+       }
+       
+   };
     
     
         const [profileImage, setProfileImage] = useState(dflt_prfl_img);
@@ -966,7 +966,7 @@ style={{display:'flex',flexDirection:'row-reverse', marginRight:'20em'}}>
           </div>
           <div style={{ color:'black', textAlign: 'none' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span>Confirmed:</span>
+              <span>Conforme:</span>
               <span>Date:</span>
             </div>
           </div>
