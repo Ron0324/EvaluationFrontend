@@ -29,6 +29,7 @@ export const ResultPage = () => {
   const [msg7, setmsg7] = useState(false);
   const [msg8, setmsg8] = useState(false);
   const [msg9, setmsg9] = useState(false);
+  const [msg10, setmsg10] = useState(false);
 
     
       const { facultyId } = useParams();
@@ -348,17 +349,65 @@ const percentage = averageRating*100/5
       }
     };
 
+    const [yearAverages, setYearAverages] = useState(null);
+    const [totalAverage, setTotalAverage] = useState(null);
+
+    useEffect(() => {
+      fetchData();
+    }, [facultyId]);
+  
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/Add_faculty/calculate_averages/${facultyId}/`);
+        const responseData = await response.json();
+        console.log(responseData);
+        setYearAverages(responseData.year_averages);
+  
+        // Calculate total average of all years
+        let totalSum = 0;
+        let totalCount = 0;
+  
+        Object.values(responseData.year_averages).forEach((data) => {
+          if (data.student.year_avg.avg_all !== null) {
+            totalSum += parseFloat(data.student.year_avg.avg_all);
+            totalCount++;
+          }
+          if (data.admin.year_avg.avg_all !== null) {
+            totalSum += parseFloat(data.admin.year_avg.avg_all);
+            totalCount++;
+          }
+        });
+ 
  
 
   
-console.log(facultyScore,evaluations)
+        const overallAverage = totalCount > 0 ? (totalSum / totalCount) : null;
+        setTotalAverage(overallAverage);
+  
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    const calculatePercentage = (rating) => {
+      return rating !== null ? ((rating * 100) / 5).toFixed(2) + '%' : 'N/A';
+    };
+  
+   
+  const calculateYearlyAverage = (studentAvg, adminAvg) => {
+    if (studentAvg !== null && adminAvg !== null) {
+      return (parseFloat(studentAvg) + parseFloat(adminAvg)) / 2;
+    }
+    return null;
+  };
 
     
     const togglemsg1 =() =>{
       setmsg1(!msg1);
     }; 
-    
+    const togglemsg10 =() =>{
+      setmsg10(!msg10);
+    }; 
 
     const [criteriaList, setCriteriaList] = useState([]);
 
@@ -375,6 +424,48 @@ console.log(facultyScore,evaluations)
 
     fetchData();
   }, []);
+
+
+const styles = {
+  yearContainer: {
+    marginBottom: '20px',
+    padding: '10px',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+  },
+  yearHeading: {
+    marginBottom: '10px',
+    fontSize: '1.5em',
+    color: '#333',
+  },
+  table: {
+    width: '100%',
+    borderCollapse: 'collapse',
+  },
+  th: {
+    borderBottom: '1px solid #ddd',
+    padding: '10px',
+    textAlign: 'left',
+    backgroundColor: '#f4f4f4',
+  },
+  td: {
+    borderBottom: '1px solid #ddd',
+    padding: '10px',
+    textAlign: 'left',
+  },
+};
+
+const handleGeneratePDF = () => {
+  const element = document.querySelector('.Evaluation_summary');
+  html2canvas(element, { scale: 2 }).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'pt', 'letter');
+    const imgWidth = 8.5 * 72; // width of the letter page in points
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    pdf.save('evaluation_summary.pdf');
+  });
+};
 
 return (
         <div>
@@ -428,7 +519,12 @@ return (
      style={{width: '8em',height:'2em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginBottom:'1em',marginTop:'1em' }}
     onClick={togglemsg2}>Okay</button></div></div>
 
+
+
+
 <div style={newmainViewStyle}>
+
+ 
 
 <div style={{display:'flex',flexDirection:'column'}}>
 
@@ -446,7 +542,9 @@ style={{width: '7em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0
 
 
 
-<div  id='mainview' className='savable' style={mainViewStyle}>
+
+
+<div  id='mainview' className='savable'  style={mainViewStyle}>
   
   <div style={{display:'fle',flexDirection:'row'}}>
 <div style={{display:'flex', flexDirection:'row'}}>
@@ -566,19 +664,19 @@ style={{width: '7em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0
       <td className='dscrptv-p'>{criteria.criteria_a}</td>
       
         <td style={{textAlign:'center'}} >
-         1
-        </td>
-        <td style={{textAlign:'center'}} >
-         2
-        </td>
-        <td style={{textAlign:'center'}} >
-         3
+         5
         </td>
         <td style={{textAlign:'center'}} >
          4
         </td>
         <td style={{textAlign:'center'}} >
-         5
+         3
+        </td>
+        <td style={{textAlign:'center'}} >
+         2
+        </td>
+        <td style={{textAlign:'center'}} >
+         1
         </td>
         
   
@@ -604,20 +702,21 @@ style={{width: '7em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0
     <tr key={criteria.id}> 
       <td className='dscrptv-p'>{criteria.criteria_b}</td>
       
+      
       <td style={{textAlign:'center'}} >
-         1
-        </td>
-        <td style={{textAlign:'center'}} >
-         2
-        </td>
-        <td style={{textAlign:'center'}} >
-         3
+         5
         </td>
         <td style={{textAlign:'center'}} >
          4
         </td>
         <td style={{textAlign:'center'}} >
-         5
+         3
+        </td>
+        <td style={{textAlign:'center'}} >
+         2
+        </td>
+        <td style={{textAlign:'center'}} >
+         1
         </td>
         
         
@@ -644,20 +743,21 @@ style={{width: '7em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0
     <tr key={criteria.id}> 
       <td className='dscrptv-p'>{criteria.criteria_c}</td>
       
+     
       <td style={{textAlign:'center'}} >
-         1
-        </td>
-        <td style={{textAlign:'center'}} >
-         2
-        </td>
-        <td style={{textAlign:'center'}} >
-         3
+         5
         </td>
         <td style={{textAlign:'center'}} >
          4
         </td>
         <td style={{textAlign:'center'}} >
-         5
+         3
+        </td>
+        <td style={{textAlign:'center'}} >
+         2
+        </td>
+        <td style={{textAlign:'center'}} >
+         1
         </td>
         
         
@@ -684,22 +784,22 @@ style={{width: '7em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0
     <tr key={criteria.id}> 
       <td className='dscrptv-p'>{criteria.criteria_d}</td>
       
+      
       <td style={{textAlign:'center'}} >
-         1
-        </td>
-        <td style={{textAlign:'center'}} >
-         2
-        </td>
-        <td style={{textAlign:'center'}} >
-         3
+         5
         </td>
         <td style={{textAlign:'center'}} >
          4
         </td>
         <td style={{textAlign:'center'}} >
-         5
+         3
         </td>
-        
+        <td style={{textAlign:'center'}} >
+         2
+        </td>
+        <td style={{textAlign:'center'}} >
+         1
+        </td>
         
   
     </tr>
@@ -755,7 +855,124 @@ style={{width: '7em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0
   
 
 <div className='evltn-ctnr '
+
 style={{height:'150em'}}>
+
+
+<div 
+
+style={{display:'flex',flexDirection:'row-reverse', marginRight:'20em'}}>
+     
+<button onClick={handleGeneratePDF} 
+      style={{width: '9em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginLeft:'1em', marginTop:'.5em' }}
+      >
+        Save as PDF
+      </button>
+      <div className="Evaluation_summary" style={{ background: 'white', display: msg10? 'flex': 'none', position: 'fixed', transform: 'scale(0.7)', top: '-2.9em', right: '30em' }}>
+
+      
+
+
+        <div style={{ display: 'flex', flexDirection: 'column', padding: '.5em' }}>
+          <div style={{ display: 'flex', flexDirection: 'row', padding: '.5em' }}>
+            <div style={{ marginRight: '2em' }}></div>
+          </div>
+          <div style={{ color: 'black', width: '50em' }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <img style={{ height: '4em', width: '4em' }} src={prmsu__logo} alt="logo of Prmsu" />
+              <div style={{ marginTop: '.5em', marginLeft: '9.2em', display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+                <span style={{ fontSize: '15px' }}>Republic of the Philippines</span>
+                <span style={{ fontWeight: 'bold', fontSize: '20px' }}>President Ramon Magsaysay State University</span>
+                <span style={{ fontSize: '15px' }}>Castillejos Campus</span>
+                <span style={{ fontSize: '15px' }}>Castillejos, Zambales</span>
+                <div style={{ textAlign: 'center' }}>
+                  <span style={{ fontWeight: 'bold', fontSize: '20px' }}>Summary of Evaluator</span>
+                </div>
+        
+              </div>
+            </div>
+            <div style={{display:'flex', flexDirection:'column'}}>
+             
+            {facultyInfo && (
+               <div>
+  <span style={{width:'10em',fontWeight: 'bold', fontSize: '18px' }}>Name of faculty: 
+   <span style ={{display:'inline-block',borderBottom:'black solid 1px',width:'10em',fontWeight:'normal',fontSize:'18px'}} > 
+    {`${facultyInfo.first_name} ${facultyInfo.last_name}`}</span>
+   </span>
+   </div>
+)}
+
+<div >
+<span style={{width:'10em',fontWeight: 'bold', fontSize: '18px', }}>Academic Rank: <input style={{border:'none', borderBottom:'black 1px solid', outline:'none', fontSize: '18px' }} type=" " />   </span>
+</div>
+</div>
+            {yearAverages ? (
+              <div style={{textAlign:'center'}} >
+                {Object.entries(yearAverages).map(([year, data]) => (
+                  <div key={year} style={styles.yearContainer}>
+                    <h3 style={styles.yearHeading}>Year: {year}</h3>
+                    <table style={styles.table}>
+                      <thead>
+                        <tr>
+                          <th style={styles.th}></th>
+                          <th style={styles.th}>1st Semester</th>
+                          <th style={styles.th}>2nd Semester</th>
+                          <th style={styles.th}>Year Average</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style={styles.td}>Student Averages</td>
+                          <td style={styles.td}>
+                            {formatAverageRating(data.student['1st_sem'].avg_all)} ({calculatePercentage(data.student['1st_sem'].avg_all)})
+                          </td>
+                          <td style={styles.td}>
+                            {formatAverageRating(data.student['2nd_sem'].avg_all)} ({calculatePercentage(data.student['2nd_sem'].avg_all)})
+                          </td>
+                          <td style={styles.td}>
+                            {formatAverageRating(data.student.year_avg.avg_all)} ({calculatePercentage(data.student.year_avg.avg_all)})
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={styles.td}>Admin Averages</td>
+                          <td style={styles.td}>
+                            {formatAverageRating(data.admin['1st_sem'].avg_all)} ({calculatePercentage(data.admin['1st_sem'].avg_all)})
+                          </td>
+                          <td style={styles.td}>
+                            {formatAverageRating(data.admin['2nd_sem'].avg_all)} ({calculatePercentage(data.admin['2nd_sem'].avg_all)})
+                          </td>
+                          <td style={styles.td}>
+                            {formatAverageRating(data.admin.year_avg.avg_all)} ({calculatePercentage(data.admin.year_avg.avg_all)})
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div style={styles.yearlyAverage}>
+                      <p>
+                        <strong>
+                          Yearly Average: {formatAverageRating(calculateYearlyAverage(data.student.year_avg.avg_all, data.admin.year_avg.avg_all))} ({calculatePercentage(calculateYearlyAverage(data.student.year_avg.avg_all, data.admin.year_avg.avg_all))})
+                        </strong>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+                <div style={styles.totalAverageContainer}>
+                  <h3>Total Average of All Years: {formatAverageRating(totalAverage)} ({calculatePercentage(totalAverage)})</h3>
+                </div>
+              </div>
+            ) : (
+              <p>Loading data...</p>
+            )}
+          </div>
+          <div style={{ color:'black', textAlign: 'none' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span>Confirmed:</span>
+              <span>Date:</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <div className='evltn-hdr '>
   {facultyInfo && (
         <>
@@ -814,6 +1031,10 @@ style={{height:'150em'}}>
 <button 
 style={{width: '9em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginLeft:'1em', marginTop:'1em' }}
 onClick={togglemsg1}>Generate PDF</button>
+
+<button 
+style={{width: '9em',height:'2.5em',background:'rgb(0 99 255)',boxShadow: 'rgb(0 0 0) 0px 0px 5px',outline:'none',borderRadius:'2px',border:'none', color:'white', marginLeft:'1em', marginTop:'1em' }}
+onClick={togglemsg10}>Show Summary</button>
     
     </div>
     </>
