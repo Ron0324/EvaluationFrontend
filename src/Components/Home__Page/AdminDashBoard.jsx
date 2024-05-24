@@ -1598,14 +1598,14 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
   Criteria
 
 </h3>
-
+{/*
 <h3 className={`admn-slctn ${IconActive.editProfile? 'active':'inactive'}`} onClick={()=>ToggleActive('editProfile')}
  style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily:'serif', justifyContent:'center',alignItems:'center', margin:'.2em',borderBottom:'1px solid #a39d9d'  } }>
   Edit Profile
 
 </h3>
 
-
+*/}
 
 </div>
 
@@ -2913,7 +2913,7 @@ type='submit'
         value={year}
         onChange={(e) => setYear(e.target.value)}
         style={{ marginLeft: '2em' }}
-        type="number"
+        type="text"
         id="year"
         placeholder="Enter year"
     />
