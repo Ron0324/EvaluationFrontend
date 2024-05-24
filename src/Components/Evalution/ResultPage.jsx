@@ -358,7 +358,7 @@ const percentage = averageRating*100/5
   
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/Add_faculty/calculate_averages/${facultyId}/`);
+        const response = await fetch(`http://91.108.111.180:8000/Add_faculty/calculate_averages/${facultyId}/`);
         const responseData = await response.json();
         console.log(responseData);
         setYearAverages(responseData.year_averages);
