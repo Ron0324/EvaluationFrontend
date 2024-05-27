@@ -278,6 +278,7 @@ const handleChange = (e) => {
   });
 };
 
+
 const getCsrfToken = () => {
   const name = 'csrftoken=';
   const decodedCookie = decodeURIComponent(document.cookie);
@@ -1305,13 +1306,20 @@ const [csrfToken, setCsrfToken] = useState('');
     if (parts.length === 2) return parts.pop().split(';').shift();
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    const sanitizedValue = name === 'first_name' ? value.replace(/[^a-zA-Z\s.,!?]/g, '') : value;
+    setStudentFormData((prevState) => ({
+      ...prevState,
+      [name]: sanitizedValue,
+    }));
 
-const handleInputChange = (e) => {
-  setStudentFormData({
-    ...studentFormData,
-    [e.target.name]: e.target.value,
-  });
-};
+    if (['first_name', 'last_name', 'suffix'].includes(name)) {
+      sanitizedValue = value.replace(/[^a-zA-Z\s.,!?]/g, '');
+    }
+  };
+
+  
 
 const handleSubmitStudent = async (e) => {
   e.preventDefault();
@@ -1351,9 +1359,10 @@ const [adminFormData, setAdminFormData] = useState({
 const handleNewInputChange = (e) => {
   setAdminFormData({
     ...adminFormData,
-    [e.target.name]: e.target.value,
+    [e.target.name]: e.target.value.replace(/[^a-zA-Z\s]/g, ''),
   });
 };
+
 const handleSubmitAdmin = async (e) => {
   e.preventDefault();
 
@@ -1923,7 +1932,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
                     id="first_name"
                     name="first_name"
                     value={newformData.first_name}
-                    onChange={(e) => newsetFormData({ ...newformData, first_name: e.target.value })}
+                    onChange={(e) => newsetFormData({ ...newformData, first_name: e.target.value.replace(/[^a-zA-Z\s]/g, '') })}
                     style={{ border: 'none', borderBottom: '1px solid black', outline: 'none', padding: '2px', marginLeft: '2px' }}
                   />
                   <label htmlFor="last_name">Last name:</label>
@@ -1932,7 +1941,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
                     id="last_name"
                     name="last_name"
                     value={newformData.last_name}
-                    onChange={(e) => newsetFormData({ ...newformData, last_name: e.target.value })}
+                    onChange={(e) => newsetFormData({ ...newformData, last_name: e.target.value.replace(/[^a-zA-Z\s]/g, '') })}
                     style={{ border: 'none', borderBottom: '1px solid black', outline: 'none', padding: '2px', marginLeft: '2px' }}
                   />
                 </div>
@@ -2159,7 +2168,7 @@ style={{cursor: 'default', display:'flex', width:'97%', height:'3em', fontFamily
 style={{border:'none', borderBottom:"black 1.5px solid", outline:'none',padding:'5px'}}
  type="text"
  value={formData.CodeName}
- onChange={handleChange}
+ onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value.replace(/[^a-zA-Z\s.,!?]/g, '') })}
  >
 
 
@@ -2172,7 +2181,7 @@ style={{marginLeft:'2em'}}
 style={{border:'none', borderBottom:"black 1.5px solid", outline:'none', padding:'5px'}}
  type="text"
  value={formData.Descriptions}
- onChange={handleChange}
+ onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value.replace(/[^a-zA-Z\s.,!?]/g, '') })}
                 
  /> 
 
@@ -2272,7 +2281,7 @@ style={{border:'none', borderBottom:"black 1.5px solid", outline:'none', padding
         <input
           name="SubDescriptions"
           value={subjectsData.SubDescriptions}
-          onChange={newhandleSubChange}
+          onChange={(e) => setSubjectsData({ ...subjectsData, [e.target.name]: e.target.value.replace(/[^a-zA-Z\s.,!?]/g, '') })}
           style={{ border: 'none', borderBottom: 'black 1.5px solid', outline: 'none', padding: '5px' }}
           type="text"
         />
@@ -2531,7 +2540,7 @@ style={{borderLeft:"none", borderRight:'none', borderTop:'none', borderBottom:'1
 type="text"
 name="id_number"
 
-onChange={handleInputChange} />
+onChange={(e) => setStudentFormData({ ...studentFormData, [e.target.name]: e.target.value })} />
 
        <label
        style={{marginLeft:'3em'}}
@@ -2586,7 +2595,7 @@ onChange={handleInputChange}>
         style={{ marginLeft: '2em' }}
         id="year_level"
         name='year_level'
-        onChange={handleInputChange}
+        onChange={(e) => setStudentFormData({ ...studentFormData, [e.target.name]: e.target.value })}
     >
         <option value="">Select Year Level</option>
         <option value="1st Year">1st Year</option>
@@ -2599,7 +2608,7 @@ onChange={handleInputChange}>
 
        <label htmlFor="Select_Course:">Course:</label>
 <select value={studentFormData.course}
-        onChange={handleInputChange}
+        onChange={(e) => setStudentFormData({ ...studentFormData, [e.target.name]: e.target.value })}
         name="course" 
         style={{borderLeft:'none',borderTop:'none',borderRight:'none',outline:'none',padding:'2px'}}>
 
@@ -2619,7 +2628,7 @@ onChange={handleInputChange}>
 <label htmlFor="Student Pass">Password: </label>
 <input
  
-      onChange={handleInputChange}
+ onChange={(e) => setStudentFormData({ ...studentFormData, [e.target.name]: e.target.value })}
        name='password'
         type="password" />
 
@@ -2660,7 +2669,7 @@ style={{borderLeft:"none", borderRight:'none', borderTop:'none', borderBottom:'1
 type="text"
 name="id_number"
 value={adminFormData.id_number}
-onChange={handleNewInputChange} />
+onChange={(e) => setAdminFormData({ ...adminFormData, [e.target.name]: e.target.value })} />
 
        <label
        style={{marginLeft:'3em'}}
@@ -2687,7 +2696,7 @@ onChange={handleNewInputChange}>
 <label htmlFor="Student Pass">Password: </label>
 <input
  value={adminFormData.password}
-      onChange={handleNewInputChange}
+ onChange={(e) => setAdminFormData({ ...adminFormData, [e.target.name]: e.target.value })}
        name='password'
         type="password" />
 
